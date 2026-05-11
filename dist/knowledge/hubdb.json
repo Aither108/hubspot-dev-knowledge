@@ -1,0 +1,86 @@
+{
+    "category": "hubdb",
+    "description": "HubDB — HubSpot's structured data tables for data-driven CMS content",
+    "source": "https://developers.hubspot.com/docs/cms/data/hubdb",
+    "requires": "Content Hub Professional or Enterprise",
+    "overview": "HubDB is a tool that allows you to create tables to store data in rows, columns, and cells, much like a spreadsheet. Enables data-driven content creation across HubSpot's CMS.",
+    "architecture": {
+        "tables": "2D arrangements of rows and columns with unique IDs",
+        "rows": "Horizontal data slices with auto-assigned IDs and default columns",
+        "columns": "Vertical slices with assigned types and unique IDs",
+        "default_columns": ["hs_id", "hs_created_at", "hs_path", "hs_name"]
+    },
+    "limits": {
+        "account": {
+            "max_tables": 1000,
+            "max_rows_total": 1000000
+        },
+        "per_table": {
+            "max_columns": 250,
+            "max_rows": 10000,
+            "max_column_name_length": 700,
+            "rich_text_column_chars": 65000,
+            "text_column_chars": 10000
+        }
+    },
+    "column_types": [
+        "Text",
+        "Rich text",
+        "URL",
+        "Image",
+        "Select",
+        "Multi-select",
+        "Date",
+        "Date and time",
+        "Number",
+        "Currency",
+        "Checkbox",
+        "Location",
+        "Foreign ID",
+        "Video"
+    ],
+    "hubl_usage": {
+        "get_rows": {
+            "syntax": "{% for row in hubdb_table_rows(tableId, filterQuery) %}{{ row.column_name }}{% endfor %}",
+            "example": "{% set products = hubdb_table_rows('products', 'price__gt=100&orderby=price&limit=10') %}\n{% for product in products %}\n<div class=\"product\">\n  <h3>{{ product.name }}</h3>\n  <p>{{ product.description }}</p>\n  <span>${{ product.price }}</span>\n</div>\n{% endfor %}"
+        },
+        "get_single_row": {
+            "syntax": "{% set row = hubdb_table_row(table_id, row_id) %}",
+            "example": "{% set item = hubdb_table_row(1548264, 6726439331) %}\n{{ item.title }}"
+        },
+        "get_table_metadata": {
+            "syntax": "{% set table_info = hubdb_table(tableId) %}",
+            "example": "{% set table = hubdb_table('products') %}\nTotal rows: {{ table.row_count }}"
+        },
+        "filter_operators": [
+            { "operator": "__eq", "description": "Equals", "example": "status__eq=active" },
+            { "operator": "__ne", "description": "Not equals", "example": "category__ne=deprecated" },
+            { "operator": "__gt", "description": "Greater than", "example": "price__gt=100" },
+            { "operator": "__gte", "description": "Greater than or equal", "example": "rating__gte=4" },
+            { "operator": "__lt", "description": "Less than", "example": "stock__lt=10" },
+            { "operator": "__lte", "description": "Less than or equal", "example": "age__lte=30" },
+            { "operator": "__contains", "description": "Contains substring", "example": "name__contains=premium" },
+            { "operator": "__is", "description": "Is (for booleans)", "example": "featured__is=true" },
+            { "operator": "__in", "description": "In list of values", "example": "category__in=shoes,boots" },
+            { "operator": "orderby", "description": "Sort by column", "example": "orderby=price or orderby=-price (descending)" },
+            { "operator": "limit", "description": "Max rows to return (default 1000)", "example": "limit=50" },
+            { "operator": "offset", "description": "Row offset for pagination", "example": "offset=20" }
+        ]
+    },
+    "dynamic_pages": {
+        "description": "HubDB can power dynamic pages where each row generates a URL",
+        "setup": [
+            "Create HubDB table with hs_path column for URL paths",
+            "Create template with templateType: page",
+            "In page settings, enable dynamic pages and select HubDB table",
+            "Use dynamic_page_hubdb_row variable to access current row data"
+        ],
+        "template_pattern": "{% if dynamic_page_hubdb_row %}\n  {# Detail page — row data available #}\n  <h1>{{ dynamic_page_hubdb_row.hs_name }}</h1>\n  {{ dynamic_page_hubdb_row.content }}\n{% else %}\n  {# Listing page — show all rows #}\n  {% for row in hubdb_table_rows(dynamic_page_hubdb_table_id, 'limit=100') %}\n  <a href=\"{{ row.hs_path }}\">{{ row.hs_name }}</a>\n  {% endfor %}\n{% endif %}"
+    },
+    "cli_commands": {
+        "create": "hs hubdb create <local-file.json>",
+        "fetch": "hs hubdb fetch <table_id> <local-file.json>",
+        "clear": "hs hubdb clear <table_id>",
+        "delete": "hs hubdb delete <table_id>"
+    }
+}

@@ -1,0 +1,84 @@
+{
+  "category": "serverless",
+  "description": "HubSpot CMS serverless functions — Node.js functions running on HubSpot's infrastructure",
+  "source": "https://developers.hubspot.com/docs/cms/data/serverless-functions",
+  "note": "Serverless functions are supported in developer platform version 2025.1. Not supported in version 2025.2.",
+  "overview": "Serverless functions let you run Node.js code server-side without managing infrastructure. Used for API calls, form processing, data fetching, and dynamic content.",
+  "limits": {
+    "execution_timeout": "10 seconds per function call",
+    "concurrent_execution": "600 seconds per minute per account",
+    "memory": "128 MB",
+    "payload_size": "6 MB max invocation payload",
+    "logging": "4 KB per execution",
+    "endpoints": "100 endpoints max per account",
+    "secrets": "50 secrets max per account",
+    "content_type": "application/json only"
+  },
+  "directory_structure": {
+    "description": "Serverless functions require a .functions directory",
+    "design_manager_layout": "my-functions.functions/\n├── serverless.json\n├── my-function.js\n└── package.json (optional)",
+    "project_layout": "project-folder/\n├── hsproject.json\n└── src/app/\n    ├── app.json\n    └── app.functions/\n        ├── function.js\n        ├── package.json\n        └── serverless.json"
+  },
+  "serverless_json": {
+    "description": "Configuration file defining endpoints and function settings",
+    "example": "{\n  \"runtime\": \"nodejs18.x\",\n  \"version\": \"1.0\",\n  \"secrets\": [\"MY_API_KEY\"],\n  \"endpoints\": {\n    \"get-data\": {\n      \"method\": \"GET\",\n      \"file\": \"get-data.js\"\n    },\n    \"submit-form\": {\n      \"method\": \"POST\",\n      \"file\": \"submit-form.js\"\n    }\n  }\n}"
+  },
+  "function_signature": {
+    "description": "Every serverless function exports a main function",
+    "basic": "exports.main = async (context) => {\n  return {\n    statusCode: 200,\n    body: { message: 'Hello World' }\n  };\n};",
+    "with_params": "exports.main = async (context, sendResponse) => {\n  const { queryParameters, body, headers, params } = context;\n  // process...\n  sendResponse({ statusCode: 200, body: { result: 'ok' } });\n};"
+  },
+  "context_object": {
+    "description": "The context parameter contains request information",
+    "properties": [
+      { "property": "context.queryParameters", "description": "URL query string parameters as object" },
+      { "property": "context.body", "description": "Request body (already parsed from JSON)" },
+      { "property": "context.headers", "description": "HTTP request headers" },
+      { "property": "context.params", "description": "URL path parameters" },
+      { "property": "context.accountId", "description": "HubSpot account ID" },
+      { "property": "context.contact", "description": "Contact data if visitor is identified" },
+      { "property": "context.secrets", "description": "Access to configured secrets" }
+    ]
+  },
+  "response_object": {
+    "properties": [
+      { "property": "statusCode", "type": "Number", "description": "HTTP status code (200, 400, 404, 500, etc.)" },
+      { "property": "body", "type": "Object or String", "description": "Response payload" },
+      { "property": "headers", "type": "Object", "description": "Response headers" }
+    ]
+  },
+  "secrets_usage": {
+    "add": "hs secrets add MY_API_KEY",
+    "access_in_function": "const apiKey = process.env.MY_API_KEY; // or context.secrets.MY_API_KEY",
+    "declare_in_serverless_json": "\"secrets\": [\"MY_API_KEY\"]",
+    "security_warning": "Never return secret values in responses or console.log — they would be exposed to the client"
+  },
+  "examples": {
+    "fetch_external_api": "const axios = require('axios');\n\nexports.main = async (context) => {\n  const response = await axios.get('https://api.example.com/data', {\n    headers: { 'Authorization': `Bearer ${process.env.API_KEY}` }\n  });\n  return {\n    statusCode: 200,\n    body: response.data\n  };\n};",
+    "handle_form_post": "exports.main = async (context) => {\n  const { name, email, message } = context.body;\n\n  if (!email) {\n    return { statusCode: 400, body: { error: 'Email required' } };\n  }\n\n  // Process form...\n  return {\n    statusCode: 200,\n    body: { success: true }\n  };\n};",
+    "call_hubspot_api": "exports.main = async (context) => {\n  const { default: axios } = await import('axios');\n  const token = process.env.HUBSPOT_ACCESS_TOKEN;\n\n  const response = await axios.get(\n    'https://api.hubapi.com/crm/v3/objects/contacts',\n    { headers: { Authorization: `Bearer ${token}` } }\n  );\n\n  return {\n    statusCode: 200,\n    body: { contacts: response.data.results }\n  };\n};"
+  },
+  "calling_from_frontend": {
+    "description": "Call serverless functions from browser JavaScript",
+    "example": "fetch('/_hcms/api/get-data?param=value')\n  .then(res => res.json())\n  .then(data => console.log(data));",
+    "url_pattern": "/_hcms/api/<endpoint-name>"
+  },
+  "debugging": {
+    "design_manager": "hs logs <function-name> --follow",
+    "project_based": "hs project logs --follow",
+    "in_app": "HubSpot App > CRM Development > Private apps > Logs tab"
+  },
+  "authentication_methods": [
+    {
+      "method": "Private App Access Tokens",
+      "description": "Store token as a secret, access via process.env. For project-based: can reference directly.",
+      "example": "const token = process.env.HUBSPOT_ACCESS_TOKEN;"
+    },
+    {
+      "method": "Secrets",
+      "description": "Securely stored credentials added via CLI",
+      "add": "hs secrets add SECRET_NAME",
+      "access": "process.env.SECRET_NAME"
+    }
+  ]
+}

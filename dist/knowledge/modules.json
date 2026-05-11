@@ -1,0 +1,237 @@
+{
+    "category": "modules",
+    "description": "HubSpot CMS custom module structure, field types, and meta.json configuration",
+    "source": "https://developers.hubspot.com/docs/cms/building-blocks/modules/overview",
+    "file_structure": {
+        "description": "A module is a directory ending in .module containing these files",
+        "required_files": [
+            {
+                "file": "meta.json",
+                "description": "Module metadata, configuration, labels, and editor placeholder settings"
+            },
+            {
+                "file": "fields.json",
+                "description": "Array of field definitions that editors can configure"
+            },
+            {
+                "file": "module.html",
+                "description": "HubL template fragment — the rendered output of the module"
+            }
+        ],
+        "optional_files": [
+            {
+                "file": "module.css",
+                "description": "Module-scoped CSS styles"
+            },
+            {
+                "file": "module.js",
+                "description": "Module-scoped JavaScript"
+            }
+        ],
+        "example_structure": "my-module.module/\n├── meta.json\n├── fields.json\n├── module.html\n├── module.css\n└── module.js"
+    },
+    "meta_json": {
+        "description": "Module metadata configuration file",
+        "fields": [
+            { "field": "label", "type": "String", "description": "Display name in the editor sidebar" },
+            { "field": "css_assets", "type": "Array", "description": "CSS files to include when module is on page" },
+            { "field": "js_assets", "type": "Array", "description": "JS files to include when module is on page" },
+            { "field": "other_assets", "type": "Array", "description": "Other files to include" },
+            { "field": "smart_type", "type": "String", "description": "NOT_SMART | SMART_CONTACT | SMART_VISITOR_GEOLOCATION | SMART_DEVICE_TYPE" },
+            { "field": "icon", "type": "String", "description": "Icon class for the module in the editor" },
+            { "field": "categories", "type": "Array", "description": "Categories for marketplace filtering" },
+            { "field": "is_available_for_new_content", "type": "Boolean", "description": "Whether module appears in editor picker (default: true)" },
+            { "field": "host_template_types", "type": "Array", "description": "Template types this module can be used in: PAGE, BLOG_POST, BLOG_LISTING, EMAIL, etc." },
+            {
+                "field": "placeholder",
+                "type": "Object",
+                "description": "Editor placeholder shown when module has no content",
+                "properties": {
+                    "show_module_icon": "Boolean",
+                    "title": "String",
+                    "description": "String"
+                }
+            }
+        ],
+        "example": "{\n  \"label\": \"My Card Module\",\n  \"css_assets\": [],\n  \"js_assets\": [],\n  \"other_assets\": [],\n  \"smart_type\": \"NOT_SMART\",\n  \"categories\": [\"CONTENT\"],\n  \"host_template_types\": [\"PAGE\", \"BLOG_POST\"],\n  \"is_available_for_new_content\": true,\n  \"placeholder\": {\n    \"show_module_icon\": true,\n    \"title\": \"Add your content\",\n    \"description\": \"Click to edit this card\"\n  }\n}"
+    },
+    "fields_json": {
+        "description": "Array of field definition objects. Access values in module.html via module.field_name",
+        "structure": "[\n  {\n    \"name\": \"field_name\",\n    \"label\": \"Display Label\",\n    \"type\": \"field_type\",\n    \"default\": value,\n    \"required\": false\n  }\n]",
+        "field_types": [
+            {
+                "type": "text",
+                "description": "Single-line text input",
+                "properties": ["default: String", "placeholder: String", "allow_new_line: Boolean"],
+                "example": "{ \"name\": \"heading\", \"label\": \"Heading\", \"type\": \"text\", \"default\": \"Hello World\" }"
+            },
+            {
+                "type": "richtext",
+                "description": "Rich text editor with formatting toolbar",
+                "properties": ["default: HTML String"],
+                "example": "{ \"name\": \"body\", \"label\": \"Body\", \"type\": \"richtext\", \"default\": \"<p>Enter your text here</p>\" }"
+            },
+            {
+                "type": "image",
+                "description": "Image picker with alt text, width, height, and src",
+                "properties": ["default.src: URL String", "default.alt: String", "default.width: Number", "default.height: Number", "responsive: Boolean", "resizable: Boolean", "show_loading: Boolean"],
+                "access": "{{ module.image.src }}, {{ module.image.alt }}, {{ module.image.width }}",
+                "example": "{ \"name\": \"hero_image\", \"label\": \"Hero Image\", \"type\": \"image\", \"responsive\": true, \"default\": { \"src\": \"\", \"alt\": \"\" } }"
+            },
+            {
+                "type": "link",
+                "description": "URL and link target picker",
+                "properties": ["default.url.href: String", "default.url.type: EXTERNAL|CONTENT|FILE|EMAIL_ADDRESS|BLOG|CALL_TO_ACTION|PHONE_NUMBER|WHATSAPP_NUMBER|PAYMENT", "default.open_in_new_tab: Boolean", "default.no_follow: Boolean"],
+                "access": "{{ module.link.url.href }}, {{ module.link.url.type }}",
+                "example": "{ \"name\": \"cta_link\", \"label\": \"CTA Link\", \"type\": \"link\", \"default\": { \"url\": { \"href\": \"\" }, \"open_in_new_tab\": false } }"
+            },
+            {
+                "type": "boolean",
+                "description": "Checkbox toggle",
+                "properties": ["default: Boolean", "display: toggle|checkbox"],
+                "access": "{{ module.show_section }}",
+                "example": "{ \"name\": \"show_section\", \"label\": \"Show section\", \"type\": \"boolean\", \"default\": true }"
+            },
+            {
+                "type": "choice",
+                "description": "Dropdown or radio button selector",
+                "properties": ["choices: [[value, label], ...]", "default: String", "display: select|radio"],
+                "access": "{{ module.layout }}",
+                "example": "{ \"name\": \"layout\", \"label\": \"Layout\", \"type\": \"choice\", \"choices\": [[\"left\", \"Left\"], [\"right\", \"Right\"]], \"default\": \"left\" }"
+            },
+            {
+                "type": "number",
+                "description": "Numeric input",
+                "properties": ["default: Number", "min: Number", "max: Number", "step: Number", "suffix: String", "prefix: String"],
+                "example": "{ \"name\": \"columns\", \"label\": \"Columns\", \"type\": \"number\", \"default\": 3, \"min\": 1, \"max\": 6 }"
+            },
+            {
+                "type": "color",
+                "description": "Color picker returning hex and opacity",
+                "properties": ["default.color: HEX String", "default.opacity: Number (0-100)"],
+                "access": "{{ module.bg_color.color }}, {{ module.bg_color.opacity }}",
+                "example": "{ \"name\": \"bg_color\", \"label\": \"Background Color\", \"type\": \"color\", \"default\": { \"color\": \"#FFFFFF\", \"opacity\": 100 } }"
+            },
+            {
+                "type": "font",
+                "description": "Font family, size, color, style picker",
+                "properties": ["default.size: Number", "default.size_unit: px|em|rem|pt", "default.font: String", "default.font_set: GOOGLE|DEFAULT|CUSTOM", "default.color: HEX", "default.bold: Boolean", "default.italic: Boolean", "default.underline: Boolean"],
+                "access": "style=\"font-family:{{ module.heading_font.font }};font-size:{{ module.heading_font.size }}{{ module.heading_font.size_unit }};color:{{ module.heading_font.color }};\"",
+                "example": "{ \"name\": \"heading_font\", \"label\": \"Heading Font\", \"type\": \"font\", \"default\": { \"size\": 24, \"size_unit\": \"px\", \"font\": \"Arial\", \"font_set\": \"DEFAULT\" } }"
+            },
+            {
+                "type": "tag",
+                "description": "HTML heading tag picker (h1–h6, p, span, div)",
+                "properties": ["default: h1|h2|h3|h4|h5|h6|p|span|div"],
+                "access": "<{{ module.heading_level }}>{{ heading }}</{{ module.heading_level }}>",
+                "example": "{ \"name\": \"heading_level\", \"label\": \"Heading Tag\", \"type\": \"tag\", \"default\": \"h2\" }"
+            },
+            {
+                "type": "url",
+                "description": "Simple URL input (no link target options)",
+                "properties": ["default: URL String"],
+                "example": "{ \"name\": \"video_url\", \"label\": \"Video URL\", \"type\": \"url\", \"default\": \"\" }"
+            },
+            {
+                "type": "videoplayer",
+                "description": "HubSpot video player picker",
+                "properties": ["default.player_id: String", "default.oembed_response: Object"],
+                "access": "{{ module.video.player_id }}"
+            },
+            {
+                "type": "icon",
+                "description": "FontAwesome icon picker",
+                "properties": ["default.name: String", "default.type: String", "default.unicode: String"],
+                "access": "<i class=\"fa {{ module.icon.name }}\"></i>"
+            },
+            {
+                "type": "cta",
+                "description": "HubSpot CTA picker",
+                "properties": ["default: CTA GUID String"],
+                "access": "{{ cta(module.cta) }}"
+            },
+            {
+                "type": "form",
+                "description": "HubSpot form picker",
+                "properties": ["default.form_id: GUID", "default.response_type: redirect|inline", "default.redirect_url: String", "default.message: String"]
+            },
+            {
+                "type": "blog",
+                "description": "Blog selector",
+                "properties": ["default: Blog ID String"]
+            },
+            {
+                "type": "menu",
+                "description": "Navigation menu picker",
+                "properties": ["default: Menu ID"]
+            },
+            {
+                "type": "page",
+                "description": "HubSpot page picker",
+                "properties": ["default: Page ID"]
+            },
+            {
+                "type": "hubdbrow",
+                "description": "HubDB row picker",
+                "properties": ["default: Row ID", "table_name_or_id: String"]
+            },
+            {
+                "type": "hubdbtable",
+                "description": "HubDB table picker",
+                "properties": ["default: Table ID"]
+            },
+            {
+                "type": "border",
+                "description": "Border style/width/color picker",
+                "properties": ["default.top/right/bottom/left.color: HEX", "default.top/right/bottom/left.style: solid|dashed|dotted|none", "default.top/right/bottom/left.width: Number"]
+            },
+            {
+                "type": "spacing",
+                "description": "Padding and margin picker",
+                "properties": ["default.padding/margin.top/right/bottom/left.value: Number", "default.padding/margin.top/right/bottom/left.units: px|em|rem|%"]
+            },
+            {
+                "type": "backgroundimage",
+                "description": "Background image with position and size settings",
+                "properties": ["default.src: URL", "default.size_type: auto|cover|contain|custom", "default.position: String", "default.attachment: scroll|fixed|local"]
+            },
+            {
+                "type": "group",
+                "description": "Groups fields together. Supports occurrence (repeater).",
+                "properties": ["children: Array of field definitions", "occurrence.min: Number", "occurrence.max: Number", "occurrence.default: Number", "occurrence.sorting_label_field: field name"],
+                "example": "{ \"name\": \"cards\", \"label\": \"Cards\", \"type\": \"group\", \"occurrence\": { \"min\": 1, \"max\": 10, \"default\": 3 }, \"children\": [ { \"name\": \"title\", \"type\": \"text\", \"label\": \"Title\" } ] }",
+                "access_in_template": "{% for card in module.cards %}{{ card.title }}{% endfor %}"
+            },
+            {
+                "type": "embed",
+                "description": "Embeddable content picker (oEmbed/raw HTML)",
+                "properties": ["default.oembed_url: URL", "default.source_type: oembed|raw_embed"]
+            },
+            {
+                "type": "followupsequence",
+                "description": "HubSpot sequence picker for form follow-ups"
+            },
+            {
+                "type": "salesforcecampaign",
+                "description": "Salesforce campaign picker"
+            }
+        ]
+    },
+    "accessing_fields_in_html": {
+        "description": "Field values are accessed in module.html via the module variable",
+        "examples": [
+            "{{ module.text_field }}",
+            "{{ module.image.src }}",
+            "{{ module.link.url.href }}",
+            "{{ module.color.color }}",
+            "{{ module.font.size }}{{ module.font.size_unit }}",
+            "{% for item in module.repeater_group %}{{ item.title }}{% endfor %}"
+        ]
+    },
+    "css_js_patterns": {
+        "description": "Patterns for including CSS/JS in module files",
+        "require_css": "{% require_css %}body { margin: 0; }{% end_require_css %} — deduplicated across instances",
+        "require_js": "{% require_js position='footer' %}document.addEventListener('DOMContentLoaded', function(){});{% end_require_js %}",
+        "module_asset_url": "{{ module_asset_url('script.js') }} — references files inside module folder"
+    }
+}

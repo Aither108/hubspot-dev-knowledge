@@ -1,0 +1,150 @@
+{
+  "category": "cli-commands",
+  "description": "HubSpot CMS CLI commands reference",
+  "source": "https://developers.hubspot.com/docs/cms/developer-reference/local-development-cms-cli",
+  "installation": "npm install -g @hubspot/cli",
+  "min_version": "8.6.0",
+  "version_check": "hs --version",
+  "groups": {
+    "general": {
+      "label": "General Commands",
+      "commands": [
+        { "command": "hs help", "description": "Show all available commands" },
+        { "command": "hs upgrade", "description": "Update CLI to latest or specific version" },
+        { "command": "hs feedback", "description": "Navigate to HubSpot developer feedback form" },
+        { "command": "hs doctor", "description": "View diagnostic information about local HubSpot configurations" },
+        { "command": "hs open", "description": "Open HubSpot tools in the browser" },
+        { "command": "hs completion", "description": "Enable tab key command completion" },
+        { "command": "hs config set", "description": "Set configuration options" },
+        { "command": "hs config migrate", "description": "Migrate config files" }
+      ]
+    },
+    "account": {
+      "label": "Account Management",
+      "commands": [
+        { "command": "hs account auth", "description": "Authenticate an account" },
+        { "command": "hs account list", "description": "List all authenticated accounts" },
+        { "command": "hs account use", "description": "Set the default account" },
+        { "command": "hs account remove", "description": "Remove an authenticated account" },
+        { "command": "hs account clean", "description": "Remove invalid accounts" },
+        { "command": "hs account create-override", "description": "Override default account" },
+        { "command": "hs api", "description": "Make API requests directly via the CLI" },
+        { "command": "hs sandbox create", "description": "Create a developer sandbox" },
+        { "command": "hs sandbox delete", "description": "Delete a sandbox" },
+        { "command": "hs secrets add", "description": "Add a secret (for serverless functions)" },
+        { "command": "hs secrets update", "description": "Update an existing secret" },
+        { "command": "hs secrets delete", "description": "Remove a secret" },
+        { "command": "hs secrets list", "description": "List all secrets in the account" },
+        { "command": "hs filemanager upload <src> <dest>", "description": "Upload files to the File Manager" },
+        { "command": "hs filemanager fetch <src> <dest>", "description": "Fetch files from the File Manager" }
+      ]
+    },
+    "cms": {
+      "label": "CMS Commands",
+      "commands": [
+        { "command": "hs cms app create", "description": "Create a new CMS app" },
+        { "command": "hs cms function create", "description": "Create a CMS serverless function" },
+        { "command": "hs cms function list", "description": "List existing CMS serverless functions" },
+        { "command": "hs cms function logs <function>", "description": "View logs for a CMS serverless function" },
+        { "command": "hs cms ls <path>", "description": "List files in Design Manager" },
+        { "command": "hs cms fetch <src> <dest>", "description": "Fetch files from HubSpot Design Manager to local" },
+        { "command": "hs cms upload <src> <dest>", "description": "Upload local files to HubSpot Design Manager" },
+        { "command": "hs cms watch <src> <dest>", "description": "Watch local directory and auto-upload changes to HubSpot" },
+        { "command": "hs cms mv <src> <dest>", "description": "Move or rename files in Design Manager" },
+        { "command": "hs cms delete <path>", "description": "Delete files from HubSpot Design Manager" },
+        { "command": "hs cms lint <path>", "description": "Lint the contents of a directory for HubL errors" },
+        { "command": "hs cms module create <name>", "description": "Create a new custom module boilerplate" },
+        { "command": "hs cms module marketplace-validate <path>", "description": "Validate a module for Template Marketplace submission" },
+        { "command": "hs cms theme create <name>", "description": "Create a new theme boilerplate" },
+        { "command": "hs cms theme preview", "description": "Preview a theme locally" },
+        { "command": "hs cms theme generate-selectors", "description": "Generate theme field selectors" },
+        { "command": "hs cms theme marketplace-validate <path>", "description": "Validate a theme for Template Marketplace submission" },
+        { "command": "hs cms get-react-module", "description": "Retrieve a React module" },
+        { "command": "hs cms convert-fields <path>", "description": "Convert JavaScript fields file to JSON format" },
+        { "command": "hs cms lighthouse-score <path>", "description": "Score a theme with Google Lighthouse" },
+        { "command": "hs cms webpack create", "description": "Create a webpack bundle for serverless functions" }
+      ]
+    },
+    "projects": {
+      "label": "Projects (Developer Platform)",
+      "commands": [
+        { "command": "hs project create", "description": "Create a new developer platform project" },
+        { "command": "hs project add", "description": "Add features to an existing project" },
+        { "command": "hs project upload", "description": "Upload project to HubSpot" },
+        { "command": "hs project download", "description": "Download project from HubSpot" },
+        { "command": "hs project deploy", "description": "Deploy a project to HubSpot" },
+        { "command": "hs project list-builds", "description": "List all project builds" },
+        { "command": "hs project list", "description": "List all uploaded projects" },
+        { "command": "hs project install-deps", "description": "Install project dependencies" },
+        { "command": "hs project update-deps", "description": "Update project dependencies" },
+        { "command": "hs project dev", "description": "Start local development server" },
+        { "command": "hs project watch", "description": "Watch for changes and auto-upload" },
+        { "command": "hs project open", "description": "Open project in HubSpot app" },
+        { "command": "hs project info", "description": "Get project information and status" },
+        { "command": "hs project logs", "description": "View project serverless function logs" },
+        { "command": "hs project lint", "description": "Analyze and validate project code" },
+        { "command": "hs project delete", "description": "Delete a project" },
+        { "command": "hs project validate", "description": "Validate project configuration files" },
+        { "command": "hs project profile add", "description": "Add a project config profile" },
+        { "command": "hs project profile delete", "description": "Delete a project config profile" },
+        { "command": "hs app migrate", "description": "Migrate a legacy public app to developer platform" }
+      ]
+    },
+    "hubdb": {
+      "label": "HubDB Commands",
+      "commands": [
+        { "command": "hs hubdb create <path>", "description": "Create a HubDB table from a local JSON file" },
+        { "command": "hs hubdb fetch <table_id> <path>", "description": "Fetch a HubDB table to a local file" },
+        { "command": "hs hubdb clear <table_id>", "description": "Clear all rows from a HubDB table" },
+        { "command": "hs hubdb delete <table_id>", "description": "Delete a HubDB table" }
+      ]
+    },
+    "custom_objects": {
+      "label": "Custom Objects",
+      "commands": [
+        { "command": "hs custom-object create <path>", "description": "Create a custom object from schema file" },
+        { "command": "hs custom-object fetch <name> <path>", "description": "Fetch a custom object schema" },
+        { "command": "hs custom-object fetch-all <path>", "description": "Fetch all custom object schemas" },
+        { "command": "hs custom-object update <name> <path>", "description": "Update a custom object schema" },
+        { "command": "hs custom-object delete <name>", "description": "Delete a custom object schema" }
+      ]
+    }
+  },
+  "common_workflows": [
+    {
+      "workflow": "Initial setup",
+      "steps": [
+        "npm install -g @hubspot/cli",
+        "hs account auth",
+        "hs account list"
+      ]
+    },
+    {
+      "workflow": "Start theme development",
+      "steps": [
+        "hs create website-theme my-theme",
+        "cd my-theme",
+        "hs cms watch src my-theme --initial-upload"
+      ]
+    },
+    {
+      "workflow": "Create and develop a module",
+      "steps": [
+        "hs cms module create my-module",
+        "hs cms upload my-module.module @theme/modules/my-module.module",
+        "hs cms watch . @theme/modules"
+      ]
+    },
+    {
+      "workflow": "Fetch existing Design Manager files locally",
+      "steps": [
+        "hs cms fetch @theme ./local-theme --overwrite"
+      ]
+    },
+    {
+      "workflow": "GitHub Actions CI/CD",
+      "description": "Automated deployment on push to main. Set secrets: HUBSPOT_PORTAL_ID, HUBSPOT_PERSONAL_ACCESS_KEY",
+      "workflow_file": ".github/workflows/deploy.yml"
+    }
+  ]
+}

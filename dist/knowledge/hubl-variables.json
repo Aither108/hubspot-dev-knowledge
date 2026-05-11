@@ -1,0 +1,210 @@
+{
+    "category": "hubl-variables",
+    "description": "HubL variables available in HubSpot CMS templates",
+    "source": "https://developers.hubspot.com/docs/cms/hubl/variables",
+    "sections": {
+        "global": {
+            "label": "Variables Available in All Templates",
+            "variables": [
+                { "name": "account", "type": "Dict", "description": "Company property values from a known contact's primary associated company. Disables page caching." },
+                { "name": "company_domain", "type": "String", "description": "Domain set in branding settings" },
+                { "name": "contact", "type": "Dict", "description": "Contact property values for a known contact. Disables page caching." },
+                { "name": "content", "type": "Dict", "description": "Properties of email, page, or post content" },
+                { "name": "content.absolute_url", "type": "String", "description": "Full URL of the page or post" },
+                { "name": "content.archived", "type": "Boolean", "description": "True if the content is archived" },
+                { "name": "content.author_email", "type": "String", "description": "Email address of the content creator" },
+                { "name": "content.author_name", "type": "String", "description": "Full name of the content creator" },
+                { "name": "content.author_username", "type": "String", "description": "HubSpot username of the creator" },
+                { "name": "content.campaign", "type": "String", "description": "GUID of associated marketing campaign" },
+                { "name": "content.campaign_name", "type": "String", "description": "Name of the associated marketing campaign" },
+                { "name": "content.created", "type": "Datetime", "description": "UTC creation timestamp" },
+                { "name": "content.meta_description", "type": "String", "description": "Meta description. Use page_meta.meta_description for pages." },
+                { "name": "content.name", "type": "String", "description": "Content name or post title" },
+                { "name": "content.publish_date", "type": "Datetime", "description": "UTC publication timestamp" },
+                { "name": "content.publish_date_localized", "type": "String", "description": "Localized datetime using time zone from account settings" },
+                { "name": "content.template_path", "type": "String", "description": "Design Manager file path to the template" },
+                { "name": "content.slug", "type": "String", "description": "URL slug portion after the domain" },
+                { "name": "content.updated", "type": "Datetime", "description": "UTC update timestamp" },
+                { "name": "content_id", "type": "String", "description": "Unique identifier for the content" },
+                { "name": "favicon_link", "type": "String", "description": "Favicon source URL" },
+                { "name": "hub_id", "type": "String", "description": "HubSpot account ID" },
+                { "name": "hubspot_analytics_tracking_code", "type": "String", "description": "Analytics tracking code snippet" },
+                { "name": "local_dt", "type": "Datetime", "description": "Current time in report settings timezone. Disables page caching." },
+                { "name": "local_time_zone", "type": "String", "description": "Time zone configured in HubSpot Report Settings" },
+                { "name": "page_meta.canonical_url", "type": "String", "description": "Official page URL for the canonical tag" },
+                { "name": "page_meta.html_title", "type": "String", "description": "Page title for the <title> tag" },
+                { "name": "page_meta.meta_description", "type": "String", "description": "Meta description for the meta tag" },
+                { "name": "page_meta.name", "type": "String", "description": "Alias for content.name" },
+                { "name": "portal_id", "type": "String", "description": "Alias for hub_id" },
+                { "name": "request_contact", "type": "Dict", "description": "Contact data from the page request. Disables caching." },
+                { "name": "site_settings", "type": "Dict", "description": "Page, blog, and email settings" },
+                { "name": "year", "type": "String", "description": "Current year" }
+            ]
+        },
+        "website_page": {
+            "label": "Website Page Variables",
+            "variables": [
+                { "name": "standard_footer_includes", "type": "String", "required": true, "description": "Renders HubSpot tracking code and footer code. Required in all page templates." },
+                { "name": "standard_header_includes", "type": "String", "required": true, "description": "Adds jQuery, CSS, viewport tag, and page metadata. Required in all page templates." },
+                { "name": "builtin_body_classes", "type": "String", "description": "Dynamically prints CSS classes differentiating content markup" },
+                { "name": "request_contact.is_logged_in", "type": "String", "description": "Returns true if visitor is logged into private content" },
+                { "name": "request_contact.list_memberships", "type": "String", "description": "Dictionary of list IDs for contact membership" },
+                { "name": "content.language", "type": "Dict", "description": "Language settings with languageTag and textDirection" },
+                { "name": "content.language.languageTag", "type": "String", "description": "Language identifier e.g. 'en', 'es'" },
+                { "name": "content.language.textDirection.value", "type": "String", "description": "Text direction: 'rtl' or 'ltr'" }
+            ]
+        },
+        "http_request": {
+            "label": "HTTP Request Variables",
+            "note": "These variables disable page caching when used.",
+            "variables": [
+                { "name": "request.cookies", "type": "Dict", "description": "Cookie names mapped to values" },
+                { "name": "request.domain", "type": "String", "description": "Domain the page was accessed from" },
+                { "name": "request.full_url", "type": "String", "description": "Complete page URL" },
+                { "name": "request.path", "type": "String", "description": "URL path component" },
+                { "name": "request.path_and_query", "type": "String", "description": "Path and query string components" },
+                { "name": "request.query", "type": "String", "description": "Query string component" },
+                { "name": "request.query_dict", "type": "Dict", "description": "Query string parsed as key-value pairs" },
+                { "name": "request.referrer", "type": "String", "description": "HTTP referrer URL" },
+                { "name": "request.remote_ip", "type": "String", "description": "Visitor IP address" },
+                { "name": "request.scheme", "type": "String", "description": "Protocol: http or https" },
+                { "name": "request.search_engine", "type": "String", "description": "Search engine e.g. google, aol" },
+                { "name": "request.search_keyword", "type": "String", "description": "Keyword phrase used in search" },
+                { "name": "request.headers", "type": "String", "description": "Dictionary of request headers" }
+            ]
+        },
+        "blog": {
+            "label": "Blog Variables",
+            "variables": [
+                { "name": "blog_author", "type": "Dict", "description": "Blog author information for author listing pages" },
+                { "name": "blog_author.avatar", "type": "String", "description": "Author avatar URL" },
+                { "name": "blog_author.bio", "type": "String", "description": "Author biography" },
+                { "name": "blog_author.display_name", "type": "String", "description": "Author display name" },
+                { "name": "blog_author.email", "type": "String", "description": "Author email address" },
+                { "name": "blog_author.facebook", "type": "String", "description": "Author Facebook profile URL" },
+                { "name": "blog_author.linkedin", "type": "String", "description": "Author LinkedIn profile URL" },
+                { "name": "blog_author.twitter", "type": "String", "description": "Author Twitter profile URL" },
+                { "name": "blog_author.website", "type": "String", "description": "Author website URL" },
+                { "name": "content.blog_post_author", "type": "Dict", "description": "Individual blog post author information" },
+                { "name": "content.post_body", "type": "String", "description": "Blog post body content" },
+                { "name": "content.post_summary", "type": "String", "description": "Post summary before the read more break" },
+                { "name": "content.post_list_content", "type": "String", "description": "Post body modified for listing view" },
+                { "name": "content.tag_list", "type": "Dict", "description": "Blog tags for looping" },
+                { "name": "content.featured_image", "type": "String", "description": "Featured image URL" },
+                { "name": "content.featured_image_alt_text", "type": "String", "description": "Featured image alt text" },
+                { "name": "content.comment_count", "type": "Integer", "description": "Number of comments on the post" },
+                { "name": "content.comment_list", "type": "String", "description": "List of post comments" },
+                { "name": "content.next_post_name", "type": "String", "description": "Name of the next post" },
+                { "name": "content.next_post_slug", "type": "String", "description": "URL slug of the next post" },
+                { "name": "content.previous_post_name", "type": "String", "description": "Name of the previous post" },
+                { "name": "content.previous_post_slug", "type": "String", "description": "URL slug of the previous post" },
+                { "name": "contents", "type": "Sequence", "description": "Sequence of blog posts on listing pages" },
+                { "name": "contents.total_count", "type": "Integer", "description": "Total number of posts in the listing" },
+                { "name": "contents.total_page_count", "type": "Integer", "description": "Total pages based on per-page setting" },
+                { "name": "contents_tags", "type": "String", "description": "All blog tags in the posts sequence" },
+                { "name": "current_page_num", "type": "Integer", "description": "Current page index in listing" },
+                { "name": "last_page_num", "type": "Integer", "description": "Last page index" },
+                { "name": "next_page_num", "type": "Integer", "description": "Next page index" },
+                { "name": "simple_list_page", "type": "Boolean", "description": "Returns true for the all posts listing page" },
+                { "name": "archive_list_page", "type": "Boolean", "description": "Returns true for archived pages" },
+                { "name": "group", "type": "Dict", "description": "Variables pertaining to the entire blog" },
+                { "name": "group.absolute_url", "type": "String", "description": "Base blog URL" },
+                { "name": "group.allow_comments", "type": "Boolean", "description": "Returns true if comments are enabled" },
+                { "name": "group.description", "type": "String", "description": "Meta description for blog listing pages" },
+                { "name": "group.html_title", "type": "String", "description": "Title for the <title> tag on listing pages" },
+                { "name": "group.id", "type": "String", "description": "Unique blog identifier" },
+                { "name": "group.public_title", "type": "String", "description": "Title displayed at top of listing pages" },
+                { "name": "group.slug", "type": "String", "description": "Blog URL path" },
+                { "name": "blog", "type": "String", "description": "Alias for the group variable" }
+            ]
+        },
+        "email": {
+            "label": "Email Variables",
+            "variables": [
+                { "name": "unsubscribe_link", "type": "String", "required": true, "description": "URL for subscription preferences or unsubscribe. Required for CAN-SPAM." },
+                { "name": "site_settings.company_name", "type": "String", "required": true, "description": "Company name for CAN-SPAM compliance" },
+                { "name": "site_settings.company_city", "type": "String", "required": true, "description": "Company city for CAN-SPAM compliance" },
+                { "name": "site_settings.company_state", "type": "String", "required": true, "description": "Company state for CAN-SPAM compliance" },
+                { "name": "site_settings.company_street_address_1", "type": "String", "required": true, "description": "Company address for CAN-SPAM compliance" },
+                { "name": "content.subject", "type": "String", "description": "Email subject line" },
+                { "name": "content.from_name", "type": "String", "description": "Email sender name" },
+                { "name": "content.reply_to", "type": "String", "description": "Reply-to email address" },
+                { "name": "content.email_body", "type": "Richtext", "description": "Main email body content" },
+                { "name": "content.emailbody_plaintext", "type": "String", "description": "Plain text body override" },
+                { "name": "content.create_page", "type": "Boolean", "description": "True if a web page version of the email exists" },
+                { "name": "unsubscribe_anchor", "type": "String", "description": "Anchor tag with 'unsubscribe' text and link" },
+                { "name": "unsubscribe_link_single", "type": "String", "description": "Unsubscribe from a single subscription type" },
+                { "name": "unsubscribe_link_all", "type": "String", "description": "Unsubscribe from all email types" },
+                { "name": "unsubscribe_section", "type": "String", "description": "Renders unsubscribe section with link and help text" },
+                { "name": "view_as_page_url", "type": "String", "description": "Link to web version of the email" },
+                { "name": "view_as_page_section", "type": "String", "description": "Link with help text to web version" },
+                { "name": "subscription_confirmation_url", "type": "String", "description": "Dynamically generated subscription confirmation URL" },
+                { "name": "subscription_name", "type": "String", "description": "Email type name" },
+                { "name": "background_color", "type": "String", "description": "Hex background color value" },
+                { "name": "body_color", "type": "String", "description": "Hex body color" },
+                { "name": "primary_accent_color", "type": "String", "description": "Hex primary accent color" },
+                { "name": "primary_font", "type": "Enumeration", "description": "Primary font setting" },
+                { "name": "primary_font_color", "type": "String", "description": "Hex primary font color" },
+                { "name": "primary_font_size", "type": "String", "description": "Primary font size in px" },
+                { "name": "secondary_accent_color", "type": "String", "description": "Hex secondary accent color" },
+                { "name": "email_body_padding", "type": "String", "description": "Email body padding setting" },
+                { "name": "email_body_width", "type": "String", "description": "Email body width setting" }
+            ]
+        },
+        "hubdb": {
+            "label": "HubDB Dynamic Page Variables",
+            "variables": [
+                { "name": "dynamic_page_hubdb_table_id", "type": "Long", "description": "Selected HubDB table ID from page settings" },
+                { "name": "dynamic_page_hubdb_row", "type": "Dict", "description": "HubDB row matching the request path. Null on listing pages." },
+                { "name": "row.hs_id", "type": "Long", "description": "Internal HubDB row ID" },
+                { "name": "row.hs_name", "type": "String", "description": "HubDB row name" },
+                { "name": "row.hs_path", "type": "String", "description": "Row path used for request resolution" },
+                { "name": "row.hs_child_table_id", "type": "Long", "description": "Child table ID for nested templates" },
+                { "name": "row.hs_parent_row", "type": "Dict", "description": "Parent row for nested templates" },
+                { "name": "dynamic_page_route_level", "type": "Integer", "description": "Depth in multi-level template, starts at 0" }
+            ]
+        },
+        "crm_dynamic": {
+            "label": "CRM Object Dynamic Page Variables",
+            "variables": [
+                { "name": "dynamic_page_crm_object", "type": "Dict", "description": "CRM object matching page request path. Null on listing pages." },
+                { "name": "dynamic_page_crm_object_type_fqn", "type": "String", "description": "Fully qualified name with account ID and object name" }
+            ]
+        },
+        "menu": {
+            "label": "Menu Node Variables",
+            "variables": [
+                { "name": "node.label", "type": "String", "description": "Menu label of the page" },
+                { "name": "node.url", "type": "String", "description": "Page URL" },
+                { "name": "node.pageId", "type": "Number", "description": "HubSpot page ID" },
+                { "name": "node.contentGroupId", "type": "Number", "description": "Blog ID if the page is a blog post" },
+                { "name": "node.parentNode", "type": "Object", "description": "Parent node with children property" },
+                { "name": "node.children", "type": "List", "description": "Child nodes of this menu item" },
+                { "name": "node.activeBranch", "type": "Boolean", "description": "True for the current active branch" },
+                { "name": "node.activeNode", "type": "Boolean", "description": "True for the current active page" },
+                { "name": "node.level", "type": "Number", "description": "Depth from top-level menu nodes" },
+                { "name": "node.pageTitle", "type": "String", "description": "Content page name" },
+                { "name": "node.slug", "type": "String", "description": "Page path slug" },
+                { "name": "node.linkTarget", "type": "String", "description": "Link target attribute of the page" }
+            ]
+        },
+        "editor": {
+            "label": "Editor and Preview Variables",
+            "variables": [
+                { "name": "is_in_hs_app", "type": "Boolean", "description": "True when rendering inside the HubSpot app" },
+                { "name": "is_in_editor", "type": "Boolean", "description": "True when rendering inside a content editor" },
+                { "name": "is_in_global_content_editor", "type": "Boolean", "description": "True in the global content editor" },
+                { "name": "is_in_theme_editor", "type": "Boolean", "description": "True in the theme editor" },
+                { "name": "is_in_page_editor", "type": "Boolean", "description": "True in the page editor" },
+                { "name": "is_in_blog_post_editor", "type": "Boolean", "description": "True in the blog post editor" },
+                { "name": "is_in_email_editor", "type": "Boolean", "description": "True in the email editor" },
+                { "name": "is_in_previewer", "type": "Boolean", "description": "True in preview mode" },
+                { "name": "is_in_module_previewer", "type": "Boolean", "description": "True in the module previewer" }
+            ]
+        }
+    },
+    "cache_disabling_variables": [
+        "account", "contact", "local_dt", "request_contact",
+        "request.cookies", "request.referrer", "request.remote_ip", "request.headers"
+    ]
+}

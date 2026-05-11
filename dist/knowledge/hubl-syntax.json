@@ -1,0 +1,175 @@
+{
+    "category": "hubl-syntax",
+    "description": "HubL language syntax, statements, operators, and expression tests",
+    "source": "https://developers.hubspot.com/docs/cms/hubl",
+    "sections": {
+        "delimiters": {
+            "description": "HubL uses Jinja2/Nunjucks-style delimiters",
+            "types": [
+                { "delimiter": "{{ }}", "purpose": "Output a variable or expression", "example": "{{ content.name }}" },
+                { "delimiter": "{% %}", "purpose": "Execute a statement (tag, if, for, set, etc.)", "example": "{% if contact %}Hello, {{ contact.firstname }}{% endif %}" },
+                { "delimiter": "{# #}", "purpose": "Comment (not rendered)", "example": "{# This is a comment #}" }
+            ]
+        },
+        "statements": {
+            "if": {
+                "syntax": "{% if condition %}...{% elif condition %}...{% else %}...{% endif %}",
+                "description": "Conditional rendering",
+                "example": "{% if contact.firstname %}Hello, {{ contact.firstname }}!{% else %}Hello, visitor!{% endif %}"
+            },
+            "for": {
+                "syntax": "{% for item in sequence %}...{% else %}...{% endfor %}",
+                "description": "Loop over a sequence. else block runs if sequence is empty.",
+                "example": "{% for tag in content.tag_list %}<span>{{ tag.name }}</span>{% endfor %}",
+                "loop_variables": {
+                    "loop.index": "Current iteration (1-based)",
+                    "loop.index0": "Current iteration (0-based)",
+                    "loop.first": "True on first iteration",
+                    "loop.last": "True on last iteration",
+                    "loop.length": "Total items in sequence",
+                    "loop.revindex": "Iterations from end (1-based)",
+                    "loop.revindex0": "Iterations from end (0-based)"
+                }
+            },
+            "set": {
+                "syntax": "{% set variable_name = value %}",
+                "description": "Assign a value to a variable",
+                "example": "{% set posts = blog_recent_posts(\"default\", 5) %}"
+            },
+            "do": {
+                "syntax": "{% do list.method() %}",
+                "description": "Execute an expression without output (used for list mutations)",
+                "example": "{% do numbers.append(4) %}"
+            },
+            "macro": {
+                "syntax": "{% macro macro_name(param1, param2) %}...{% endmacro %}",
+                "description": "Define a reusable template snippet",
+                "example": "{% macro render_card(title, body) %}<div class=\"card\"><h2>{{ title }}</h2><p>{{ body }}</p></div>{% endmacro %}{{ render_card(\"Hello\", \"World\") }}"
+            },
+            "import": {
+                "syntax": "{% import \"path/to/macros.html\" as macros %}",
+                "description": "Import macros from another file",
+                "example": "{% import \"/path/to/macros.html\" as macros %}{{ macros.my_macro() }}"
+            },
+            "from_import": {
+                "syntax": "{% from \"path/to/macros.html\" import macro_name %}",
+                "description": "Import specific macros from a file",
+                "example": "{% from \"/path/to/macros.html\" import render_card %}{{ render_card(\"Title\") }}"
+            },
+            "extends": {
+                "syntax": "{% extends \"path/to/base.html\" %}",
+                "description": "Extends a base template. Must be first tag in file.",
+                "example": "{% extends \"../base.html\" %}"
+            },
+            "block": {
+                "syntax": "{% block block_name %}...{% endblock %}",
+                "description": "Defines a replaceable block in a base template",
+                "example": "{% block content %}Default content{% endblock %}"
+            },
+            "include": {
+                "syntax": "{% include \"path/to/partial.html\" %}",
+                "description": "Includes another template file inline",
+                "example": "{% include \"partials/navigation.html\" %}"
+            },
+            "with": {
+                "syntax": "{% with var = value %}...{% endwith %}",
+                "description": "Creates a scoped variable within a block",
+                "example": "{% with message = \"Hello\" %}{{ message }}{% endwith %}"
+            },
+            "raw": {
+                "syntax": "{% raw %}...{% endraw %}",
+                "description": "Renders content without HubL processing (escape HubL syntax)",
+                "example": "{% raw %}{{ this will not be processed }}{% endraw %}"
+            }
+        },
+        "operators": {
+            "math": [
+                { "operator": "+", "description": "Addition", "example": "{{ 11 + 2 }}" },
+                { "operator": "-", "description": "Subtraction", "example": "{{ 11 - 2 }}" },
+                { "operator": "/", "description": "Division", "example": "{{ 11 / 2 }}" },
+                { "operator": "%", "description": "Modulo (remainder)", "example": "{{ 11 % 2 }}" },
+                { "operator": "//", "description": "Integer division (floor)", "example": "{{ 11 // 2 }}" },
+                { "operator": "*", "description": "Multiplication", "example": "{{ 11 * 2 }}" },
+                { "operator": "**", "description": "Exponentiation", "example": "{{ 11 ** 2 }}" }
+            ],
+            "comparison": [
+                { "operator": "==", "shorthand": "eq", "description": "Equal to" },
+                { "operator": "!=", "shorthand": "ne", "description": "Not equal to" },
+                { "operator": ">", "shorthand": "gt", "description": "Greater than" },
+                { "operator": ">=", "shorthand": "gte", "description": "Greater than or equal" },
+                { "operator": "<", "shorthand": "lt", "description": "Less than" },
+                { "operator": "<=", "shorthand": "lte", "description": "Less than or equal" }
+            ],
+            "logical": [
+                { "operator": "and", "description": "Returns true if both operands are truthy" },
+                { "operator": "or", "description": "Returns first truthy operand or the second" },
+                { "operator": "not", "description": "Negates a boolean" },
+                { "operator": "is / is not", "description": "Affirms or negates an expression test" },
+                { "operator": "in", "description": "Checks if value exists in a sequence" },
+                { "operator": "|", "description": "Applies a filter to a value" },
+                { "operator": "~", "description": "Concatenates values as strings" },
+                { "operator": "?", "description": "Ternary: expression ? true_value : false_value" }
+            ]
+        },
+        "expression_tests": [
+            { "test": "boolean", "description": "Verify strict boolean type", "example": "{% if isActive is boolean %}" },
+            { "test": "containing", "description": "Check if list contains a value", "example": "{% if numbers is containing 2 %}" },
+            { "test": "containingall", "description": "Check if list contains all values from another list", "example": "{% if numbers is containingall [2, 3] %}" },
+            { "test": "defined", "description": "Verify variable exists in context", "example": "{% if widget_data.color is defined %}" },
+            { "test": "divisibleby", "description": "Test numeric divisibility", "example": "{% if loop.index is divisibleby 5 %}" },
+            { "test": "equalto", "description": "Compare variable to a value", "example": "{% if loop.length is equalto 4 %}" },
+            { "test": "even", "description": "Verify numeric value is even", "example": "{% if loop.index is even %}" },
+            { "test": "float", "description": "Verify value is a float", "example": "{% if quantity is float %}" },
+            { "test": "integer", "description": "Verify value is a whole number", "example": "{% if quantity is integer %}" },
+            { "test": "iterable", "description": "Test if variable can be looped through", "example": "{% if jobs is iterable %}" },
+            { "test": "lower", "description": "Verify string is lowercase", "example": "{% if text is lower %}" },
+            { "test": "mapping", "description": "Verify object is a dictionary/map", "example": "{% if contact is mapping %}" },
+            { "test": "none", "description": "Verify variable has null value", "example": "{% if email is none %}" },
+            { "test": "number", "description": "Verify value is numeric", "example": "{% if my_var is number %}" },
+            { "test": "odd", "description": "Verify numeric value is odd", "example": "{% if loop.index is odd %}" },
+            { "test": "sameas", "description": "Compare two variables for identical values", "example": "{% if var_one is sameas var_two %}" },
+            { "test": "sequence", "description": "Test if variable is a sequence (list/array)", "example": "{% if genres is sequence %}" },
+            { "test": "string", "description": "Verify value is a string", "example": "{% if my_var is string %}" },
+            { "test": "string_containing", "description": "Test if string contains substring", "example": "{% if domain is string_containing \".es\" %}" },
+            { "test": "string_startingwith", "description": "Test if string starts with prefix", "example": "{% if slug is string_startingwith \"es/\" %}" },
+            { "test": "truthy", "description": "Test if expression evaluates to True", "example": "{% if checkbox is truthy %}" },
+            { "test": "undefined", "description": "Verify variable doesn't exist in context", "example": "{% if my_var is undefined %}" },
+            { "test": "upper", "description": "Verify string is uppercase", "example": "{% if text is upper %}" },
+            { "test": "within", "description": "Test if variable is present within a list", "example": "{% if 2 is within numbers %}" }
+        ],
+        "common_patterns": [
+            {
+                "name": "Null check before output",
+                "code": "{% if variable is defined and variable != null %}{{ variable }}{% endif %}"
+            },
+            {
+                "name": "Default value for undefined variable",
+                "code": "{{ variable|default('fallback text') }}"
+            },
+            {
+                "name": "Loop with index",
+                "code": "{% for item in items %}{{ loop.index }}: {{ item.name }}{% endfor %}"
+            },
+            {
+                "name": "Conditional class",
+                "code": "<div class=\"item {% if item.featured %}featured{% endif %}\">"
+            },
+            {
+                "name": "JSON output for JavaScript",
+                "code": "<script>var data = {{ items|tojson|safe }};</script>"
+            },
+            {
+                "name": "Request query param",
+                "code": "{% set search_query = request.query_dict.q|default('') %}"
+            },
+            {
+                "name": "Truncated blog excerpt",
+                "code": "{{ content.post_summary|truncatehtml(200, '...') }}"
+            },
+            {
+                "name": "Format publish date",
+                "code": "{{ content.publish_date|format_datetime('long', 'America/New_York', 'en') }}"
+            }
+        ]
+    }
+}

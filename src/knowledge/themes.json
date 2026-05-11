@@ -1,0 +1,65 @@
+{
+  "category": "themes",
+  "description": "HubSpot CMS theme structure, configuration, and fields system",
+  "source": "https://developers.hubspot.com/docs/cms/building-blocks/themes",
+  "overview": "A theme is a single directory of files including HTML, CSS, JavaScript, modules, and subdirectories. Two JSON files are mandatory at the root: theme.json and fields.json.",
+  "structure": {
+    "root_files": [
+      { "file": "theme.json", "required": true, "description": "Theme metadata and configuration" },
+      { "file": "fields.json", "required": true, "description": "Theme editor field definitions" }
+    ],
+    "recommended_structure": "my-theme/\n├── theme.json\n├── fields.json\n├── templates/\n│   ├── home.html\n│   ├── page.html\n│   ├── blog-listing.html\n│   ├── blog-post.html\n│   └── partials/\n│       ├── header.html\n│       └── footer.html\n├── modules/\n│   ├── hero.module/\n│   ├── card.module/\n│   └── cta.module/\n├── css/\n│   ├── main.css\n│   └── theme-overrides.css\n├── js/\n│   └── main.js\n├── images/\n└── _locales/\n    ├── en.json\n    └── es.json"
+  },
+  "theme_json": {
+    "description": "Theme metadata file — required at root level",
+    "fields": [
+      { "field": "label", "type": "String", "required": true, "description": "Display name used throughout the HubSpot interface" },
+      { "field": "preview_path", "type": "String", "required": true, "description": "Relative path to default template for theme preview" },
+      { "field": "screenshot_path", "type": "String", "description": "Image path showing theme appearance in selection screens" },
+      { "field": "enable_domain_stylesheets", "type": "Boolean", "default": false, "description": "Controls domain stylesheet inclusion" },
+      { "field": "version", "type": "String", "description": "Version number with dot notation support" },
+      { "field": "author", "type": "Object", "description": "Theme author info: { name, email, url }" },
+      { "field": "documentation_url", "type": "String", "description": "URL to theme documentation" },
+      { "field": "example_url", "type": "String", "description": "URL to live demo" },
+      { "field": "license", "type": "String", "description": "SPDX identifier or relative path to license file" },
+      { "field": "is_available_for_new_content", "type": "Boolean", "default": true, "description": "Controls visibility in page creation UI" }
+    ],
+    "example": "{\n  \"label\": \"My Custom Theme\",\n  \"preview_path\": \"./templates/home.html\",\n  \"screenshot_path\": \"./images/preview.png\",\n  \"enable_domain_stylesheets\": false,\n  \"version\": \"1.0.0\",\n  \"author\": {\n    \"name\": \"Developer Name\",\n    \"email\": \"dev@example.com\",\n    \"url\": \"https://example.com\"\n  },\n  \"is_available_for_new_content\": true\n}"
+  },
+  "fields_json": {
+    "description": "Theme editor fields — define what the theme editor exposes to editors",
+    "supported_field_types": ["Boolean", "Border", "Choice", "Color", "Font", "Image", "Number", "Spacing"],
+    "structure": "[\n  {\n    \"type\": \"group\",\n    \"name\": \"identifier\",\n    \"label\": \"Display Name\",\n    \"children\": [ /* field definitions */ ]\n  }\n]",
+    "accessing_in_css": "Theme values use {{ theme.path.to.value }} dot notation directly in CSS files",
+    "example": "[\n  {\n    \"type\": \"group\",\n    \"name\": \"typography\",\n    \"label\": \"Typography\",\n    \"children\": [\n      {\n        \"type\": \"font\",\n        \"name\": \"h1_font\",\n        \"label\": \"Heading 1\",\n        \"default\": {\n          \"size\": 36,\n          \"size_unit\": \"px\",\n          \"font\": \"Merriweather\",\n          \"font_set\": \"GOOGLE\",\n          \"color\": \"#333333\",\n          \"bold\": false\n        }\n      }\n    ]\n  },\n  {\n    \"type\": \"group\",\n    \"name\": \"colors\",\n    \"label\": \"Colors\",\n    \"children\": [\n      {\n        \"type\": \"color\",\n        \"name\": \"primary\",\n        \"label\": \"Primary Color\",\n        \"default\": { \"color\": \"#0066CC\", \"opacity\": 100 }\n      },\n      {\n        \"type\": \"color\",\n        \"name\": \"background\",\n        \"label\": \"Background\",\n        \"default\": { \"color\": \"#FFFFFF\", \"opacity\": 100 }\n      }\n    ]\n  }\n]"
+  },
+  "theme_css_usage": {
+    "description": "Using theme field values in CSS and templates",
+    "css_example": "/* In theme CSS files - HubL processes {{ }} in CSS */\nbody {\n  font-family: {{ theme.typography.h1_font.font }}, sans-serif;\n  color: {{ theme.colors.primary.color }};\n  background-color: {{ theme.colors.background.color }};\n}\n\nh1 {\n  font-size: {{ theme.typography.h1_font.size }}{{ theme.typography.h1_font.size_unit }};\n  font-weight: {{ theme.typography.h1_font.bold ? 'bold' : 'normal' }};\n}",
+    "template_example": "{# In .html templates #}\n{% if theme.colors.primary.color %}\n<style>:root { --primary: {{ theme.colors.primary.color }}; }</style>\n{% endif %}"
+  },
+  "cli_commands": {
+    "create": "hs cms theme create <name>",
+    "preview": "hs cms theme preview",
+    "generate_selectors": "hs cms theme generate-selectors",
+    "marketplace_validate": "hs cms theme marketplace-validate",
+    "upload": "hs cms upload <src> <dest>",
+    "watch": "hs cms watch <src> <dest>"
+  },
+  "boilerplate": {
+    "description": "HubSpot's official starter theme",
+    "github": "https://github.com/HubSpot/cms-theme-boilerplate",
+    "create_command": "hs create website-theme <directory>",
+    "performance": {
+      "website_grader": 97,
+      "lighthouse_performance": 98,
+      "lighthouse_seo": 100,
+      "lighthouse_accessibility": 100
+    }
+  },
+  "localization": {
+    "description": "Multi-language support via _locales folder",
+    "structure": "_locales/\n├── en.json\n├── es.json\n└── fr.json",
+    "usage": "{% set translations = load_translations('../_locales', content.language.languageTag, 'en') %}{{ translations.nav_home }}"
+  }
+}

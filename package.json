@@ -1,0 +1,25 @@
+{
+  "name": "hubspot-dev-knowledge-mcp",
+  "version": "1.0.0",
+  "description": "MCP server providing comprehensive HubSpot CMS developer knowledge — HubL, templates, modules, themes, CLI, HubDB, and serverless functions",
+  "main": "dist/index.js",
+  "bin": {
+    "hubspot-dev-knowledge": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "prepare": "npm run build"
+  },
+  "keywords": ["hubspot", "cms", "hubl", "mcp", "model-context-protocol", "developer-tools"],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  }
+}

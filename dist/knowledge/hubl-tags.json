@@ -1,0 +1,363 @@
+{
+    "category": "hubl-tags",
+    "description": "HubL standard tags for HubSpot CMS modules and templates",
+    "source": "https://developers.hubspot.com/docs/cms/hubl/tags",
+    "usage": "Tags use block syntax: {% tag_name \"field_name\" param=value %}",
+    "tags": [
+        {
+            "name": "blog_comments",
+            "syntax": "{% blog_comments \"blog_comments\" %}",
+            "category": "blog",
+            "params": {
+                "limit": "Number (default 5000)",
+                "select_blog": "String (default \"default\")",
+                "skip_css": "Boolean",
+                "message": "String"
+            },
+            "description": "Renders comment embeds and forms on blog templates"
+        },
+        {
+            "name": "post_filter",
+            "syntax": "{% post_filter \"post_filter\" %}",
+            "category": "blog",
+            "params": {
+                "select_blog": "String",
+                "expand_link_text": "String",
+                "list_title": "String",
+                "list_tag": "String",
+                "title_tag": "String",
+                "max_links": "Number",
+                "filter_type": "tag|month|author"
+            },
+            "description": "Creates linked listings for filtering by tag, month, or author"
+        },
+        {
+            "name": "post_listing",
+            "syntax": "{% post_listing \"post_listing\" %}",
+            "category": "blog",
+            "params": {
+                "select_blog": "String",
+                "list_title": "String",
+                "list_tag": "String",
+                "title_tag": "String",
+                "listing_type": "recent|popular (and variants)",
+                "max_links": "Number",
+                "include_featured_image": "Boolean"
+            },
+            "description": "Displays popular or recent posts asynchronously"
+        },
+        {
+            "name": "related_blog_posts",
+            "syntax": "{% related_blog_posts limit=2, blog_ids=\"1,2\" %}",
+            "category": "blog",
+            "params": {
+                "blog_ids": "String (comma-separated)",
+                "blog_post_ids": "String",
+                "blog_post_override": "String",
+                "limit": "Number",
+                "tags": "String",
+                "tag_boost": "Number",
+                "start_date": "Date",
+                "end_date": "Date",
+                "blog_authors": "String",
+                "path_prefixes": "String",
+                "callback": "String",
+                "post_formatter": "String",
+                "allow_any_language": "Boolean"
+            },
+            "description": "Generates relevant post listings based on current post"
+        },
+        {
+            "name": "blog_social_sharing",
+            "syntax": "{% blog_social_sharing \"blog_social_sharing\" %}",
+            "category": "blog",
+            "params": {
+                "select_blog": "String",
+                "downgrade_shared_url": "Boolean"
+            },
+            "description": "Renders social share counters for blog posts"
+        },
+        {
+            "name": "blog_subscribe",
+            "syntax": "{% blog_subscribe \"blog_subscribe\" %}",
+            "category": "blog",
+            "params": {
+                "select_blog": "String",
+                "title": "String",
+                "no_title": "Boolean",
+                "response_message": "String",
+                "edit_form_link": "Boolean"
+            },
+            "description": "Creates subscriber form for a specific blog"
+        },
+        {
+            "name": "boolean",
+            "syntax": "{% boolean \"boolean\" %}",
+            "category": "content-input",
+            "params": {
+                "value": "Boolean (default false)"
+            },
+            "description": "Creates a checkbox field in the content editor"
+        },
+        {
+            "name": "choice",
+            "syntax": "{% choice \"choice\" %}",
+            "category": "content-input",
+            "params": {
+                "value": "String",
+                "choices": "String (comma-separated or value-label pairs)"
+            },
+            "description": "Creates a dropdown selector in the editor"
+        },
+        {
+            "name": "color",
+            "syntax": "{% color \"my_color_picker\" %}",
+            "category": "content-input",
+            "params": {
+                "color": "HEX string (default)"
+            },
+            "description": "Color picker field returning HEX values"
+        },
+        {
+            "name": "header",
+            "syntax": "{% header \"header\" %}",
+            "category": "content-input",
+            "params": {
+                "header_tag": "h1|h2|h3|h4|h5|h6 (default h1)",
+                "value": "String"
+            },
+            "description": "Renders text as heading element. Editor allows changing heading level."
+        },
+        {
+            "name": "icon",
+            "syntax": "{% icon name=\"Accessible Icon\" style=\"REGULAR\" unicode=\"f368\" icon_set=\"fontawesome-5.14.0\" %}",
+            "category": "content-input",
+            "params": {
+                "name": "String",
+                "style": "REGULAR|SOLID",
+                "unicode": "String",
+                "icon_set": "String (e.g. fontawesome-5.14.0)",
+                "purpose": "decorative|semantic",
+                "title": "String"
+            },
+            "description": "Renders FontAwesome icons"
+        },
+        {
+            "name": "image",
+            "syntax": "{% image \"image\" %}",
+            "category": "content-input",
+            "params": {
+                "alt": "String",
+                "src": "String (URL)",
+                "width": "Number",
+                "height": "Number",
+                "hspace": "Number",
+                "align": "String",
+                "style": "String",
+                "loading": "lazy|eager|auto"
+            },
+            "description": "User-selectable image field that renders an img tag"
+        },
+        {
+            "name": "image_src",
+            "syntax": "{% image_src \"image_src\" %}",
+            "category": "content-input",
+            "params": {
+                "src": "String (URL)"
+            },
+            "description": "Returns image URL without the img tag wrapper"
+        },
+        {
+            "name": "cta",
+            "syntax": "{% cta \"my_cta\" guid=\"[guid]\" %}",
+            "category": "interactive",
+            "params": {
+                "embed_code": "String",
+                "full_html": "Boolean",
+                "image_src": "String",
+                "image_editor": "Boolean",
+                "guid": "String (CTA GUID)",
+                "image_html": "String",
+                "image_email": "Boolean"
+            },
+            "description": "Embeds HubSpot CTA buttons"
+        },
+        {
+            "name": "raw_html",
+            "syntax": "{% raw_html \"raw_html\" %}",
+            "category": "content-input",
+            "params": {
+                "value": "String (HTML)"
+            },
+            "description": "Raw HTML input field in the content editor"
+        },
+        {
+            "name": "module",
+            "syntax": "{% module \"my_custom_module\" path=\"/Assets/module\" label=\"Custom module\" %}",
+            "category": "layout",
+            "params": {
+                "module_id": "String",
+                "path": "String (design manager path)"
+            },
+            "description": "Includes a pre-built custom module in a template"
+        },
+        {
+            "name": "widget_container",
+            "syntax": "{% widget_container \"my_flexible_column\" label=\"My flex column\"}...{% end_widget_container %}",
+            "category": "layout",
+            "description": "Flexible column container that allows content editors to insert modules. Pages only.",
+            "note": "Only available in page templates, not emails."
+        },
+        {
+            "name": "form",
+            "syntax": "{% form \"my_form\" form_to_use=\"{formID}\" %}",
+            "category": "interactive",
+            "params": {
+                "form_to_use": "String (Form GUID)",
+                "title": "String",
+                "no_title": "Boolean",
+                "form_follow_ups_follow_up_type": "String",
+                "response_message": "String",
+                "redirect_url": "String",
+                "notifications_are_overridden": "Boolean",
+                "notifications_override_email_addresses": "String"
+            },
+            "description": "Renders a HubSpot form with follow-up actions and CAN-SPAM compliance"
+        },
+        {
+            "name": "gallery",
+            "syntax": "{% gallery \"crm_gallery\" %}",
+            "category": "media",
+            "params": {
+                "slides": "JSON",
+                "loop_slides": "Boolean",
+                "num_seconds": "Number",
+                "show_pagination": "Boolean",
+                "sizing": "String",
+                "auto_advance": "Boolean",
+                "transition": "String",
+                "caption_position": "String",
+                "display_mode": "String",
+                "lightboxRows": "Number"
+            },
+            "description": "Slick-based image gallery with multiple display modes including lightbox"
+        },
+        {
+            "name": "language_switcher",
+            "syntax": "{% language_switcher \"language_switcher\" %}",
+            "category": "multilanguage",
+            "params": {
+                "display_mode": "Pagelang|Localized|Hybrid"
+            },
+            "description": "Globe icon with links to translated versions of the page"
+        },
+        {
+            "name": "page_footer",
+            "syntax": "{% page_footer \"page_footer\" %}",
+            "category": "layout",
+            "description": "Renders copyright information from account settings"
+        },
+        {
+            "name": "editor_placeholder",
+            "syntax": "{% editor_placeholder %}",
+            "category": "editor",
+            "description": "Shows placeholder content when a module has no content in the editor. Configured in module meta.json with placeholder object.",
+            "meta_json_config": {
+                "placeholder": {
+                    "show_module_icon": "Boolean",
+                    "title": "String",
+                    "description": "String"
+                }
+            }
+        },
+        {
+            "name": "email_subscriptions",
+            "syntax": "{% email_subscriptions %}",
+            "category": "email",
+            "description": "Required tag for email subscription preferences page templates"
+        },
+        {
+            "name": "email_simple_subscription",
+            "syntax": "{% email_simple_subscription %}",
+            "category": "email",
+            "description": "Required tag for email unsubscribe page templates"
+        },
+        {
+            "name": "dnd_area",
+            "syntax": "{% dnd_area \"area_id\" %}...{% end_dnd_area %}",
+            "category": "drag-and-drop",
+            "description": "Defines a drag-and-drop area in coded templates. Includes layout.css automatically.",
+            "children": ["dnd_section", "dnd_row", "dnd_column", "dnd_module"]
+        },
+        {
+            "name": "dnd_section",
+            "syntax": "{% dnd_section %}...{% end_dnd_section %}",
+            "category": "drag-and-drop",
+            "params": {
+                "background_color": "Object (color, opacity)",
+                "background_image": "Object (backgroundPosition, backgroundSize, imageUrl)",
+                "margin": "Object (top, bottom)",
+                "padding": "Object (top, bottom, left, right)",
+                "max_width": "Number",
+                "full_width": "Boolean"
+            },
+            "description": "Section container inside a dnd_area"
+        },
+        {
+            "name": "dnd_row",
+            "syntax": "{% dnd_row %}...{% end_dnd_row %}",
+            "category": "drag-and-drop",
+            "params": {
+                "padding": "Object (top, bottom, left, right)"
+            },
+            "description": "Row container inside a dnd_section"
+        },
+        {
+            "name": "dnd_column",
+            "syntax": "{% dnd_column %}...{% end_dnd_column %}",
+            "category": "drag-and-drop",
+            "params": {
+                "width": "Number (1-12 column grid)",
+                "padding": "Object (top, bottom, left, right)"
+            },
+            "description": "Column container inside a dnd_row"
+        },
+        {
+            "name": "dnd_module",
+            "syntax": "{% dnd_module path=\"/path/to/module\" %}",
+            "category": "drag-and-drop",
+            "params": {
+                "path": "String (module path)",
+                "horizontal_alignment": "LEFT|CENTER|RIGHT"
+            },
+            "description": "Embeds a module inside a drag-and-drop column"
+        },
+        {
+            "name": "require_css",
+            "syntax": "{% require_css %}...{% end_require_css %}",
+            "category": "asset-loading",
+            "description": "Declares inline CSS to be loaded in the page head. Deduplicated across multiple module instances."
+        },
+        {
+            "name": "require_js",
+            "syntax": "{% require_js %}...{% end_require_js %}",
+            "category": "asset-loading",
+            "params": {
+                "position": "head|footer"
+            },
+            "description": "Declares JavaScript to be loaded once in the page, regardless of multiple module instances"
+        },
+        {
+            "name": "standard_header_includes",
+            "syntax": "{{ standard_header_includes }}",
+            "category": "required",
+            "description": "Must be placed inside <head>. Adds jQuery, viewport tag, CSS, and page metadata. Required in all page templates."
+        },
+        {
+            "name": "standard_footer_includes",
+            "syntax": "{{ standard_footer_includes }}",
+            "category": "required",
+            "description": "Must be placed before </body>. Adds HubSpot tracking code and footer scripts. Required in all page templates."
+        }
+    ]
+}

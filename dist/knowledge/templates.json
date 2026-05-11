@@ -1,0 +1,134 @@
+{
+    "category": "templates",
+    "description": "HubSpot CMS template types, structures, and required variables",
+    "source": "https://developers.hubspot.com/docs/cms/building-blocks/templates/overview",
+    "template_types": [
+        {
+            "type": "page",
+            "annotation": "templateType: page",
+            "description": "General website and landing page template. Most flexible type.",
+            "required_variables": ["standard_header_includes", "standard_footer_includes"],
+            "file_extension": ".html",
+            "example_annotation": "<!--\n  templateType: page\n  isAvailableForNewContent: true\n  label: My Page Template\n-->"
+        },
+        {
+            "type": "blog_listing",
+            "annotation": "templateType: blog_listing",
+            "description": "Displays paginated blog post summaries",
+            "required_variables": ["standard_header_includes", "standard_footer_includes", "contents"],
+            "key_variables": ["contents", "contents.total_count", "contents.total_page_count", "current_page_num", "last_page_num"],
+            "file_extension": ".html"
+        },
+        {
+            "type": "blog_post",
+            "annotation": "templateType: blog_post",
+            "description": "Displays a single full blog post",
+            "required_variables": ["standard_header_includes", "standard_footer_includes"],
+            "key_variables": ["content.post_body", "content.name", "content.blog_post_author", "content.tag_list", "content.featured_image"],
+            "file_extension": ".html"
+        },
+        {
+            "type": "blog",
+            "annotation": "templateType: blog",
+            "description": "Combined template that handles both listing and post detail pages",
+            "file_extension": ".html"
+        },
+        {
+            "type": "email",
+            "annotation": "templateType: email",
+            "description": "Marketing email templates. Stringent CAN-SPAM requirements.",
+            "required_variables": ["unsubscribe_link", "site_settings.company_name", "site_settings.company_city", "site_settings.company_state", "site_settings.company_street_address_1"],
+            "note": "Cannot use widget_container or dnd_area. Uses email-specific variables.",
+            "file_extension": ".html"
+        },
+        {
+            "type": "partial",
+            "annotation": "templateType: page\nisAvailableForNewContent: false",
+            "description": "Reusable template fragment included in other templates via {% include %}",
+            "file_extension": ".html",
+            "example_use": "{% include \"custom/partials/navigation.html\" %}"
+        },
+        {
+            "type": "global_partial",
+            "annotation": "templateType: global_partial",
+            "description": "Sitewide reusable component (headers, footers, sidebars). Editable once, reflects everywhere.",
+            "file_extension": ".html"
+        },
+        {
+            "type": "error_page",
+            "annotation": "templateType: error_page",
+            "description": "Custom 404 and 500 error pages",
+            "file_extension": ".html"
+        },
+        {
+            "type": "email_subscription_preferences_page",
+            "annotation": "templateType: email_subscription_preferences_page",
+            "description": "Email subscription preferences management page",
+            "required_tags": ["{% email_subscriptions %}"],
+            "file_extension": ".html"
+        },
+        {
+            "type": "email_backup_unsubscribe_page",
+            "annotation": "templateType: email_backup_unsubscribe_page",
+            "description": "Email unsubscribe page",
+            "required_tags": ["{% email_simple_subscription %}"],
+            "file_extension": ".html"
+        },
+        {
+            "type": "email_subscriptions_confirmation_page",
+            "annotation": "templateType: email_subscriptions_confirmation_page",
+            "description": "Unsubscribe confirmation page",
+            "key_variables": ["unsubscribe_link_all"],
+            "file_extension": ".html"
+        },
+        {
+            "type": "password_prompt_page",
+            "annotation": "templateType: password_prompt_page",
+            "description": "Branded password protection page",
+            "file_extension": ".html"
+        },
+        {
+            "type": "search_results_page",
+            "annotation": "templateType: search_results_page",
+            "description": "Site search results listing",
+            "file_extension": ".html"
+        },
+        {
+            "type": "membership_login_page",
+            "annotation": "templateType: membership_login_page",
+            "description": "Login page for access-controlled content",
+            "file_extension": ".html"
+        },
+        {
+            "type": "membership_register_page",
+            "annotation": "templateType: membership_register_page",
+            "description": "User account registration page",
+            "file_extension": ".html"
+        },
+        {
+            "type": "membership_reset_page",
+            "annotation": "templateType: membership_reset_page",
+            "description": "Password reset page",
+            "file_extension": ".html"
+        },
+        {
+            "type": "membership_reset_request_page",
+            "annotation": "templateType: membership_reset_request_page",
+            "description": "Password reset request form page",
+            "file_extension": ".html"
+        }
+    ],
+    "page_template_structure": {
+        "description": "Standard coded page template structure",
+        "example": "<!doctype html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n  <title>{{ page_meta.html_title }}</title>\n  <meta name=\"description\" content=\"{{ page_meta.meta_description }}\">\n  {{ standard_header_includes }}\n</head>\n<body class=\"{{ builtin_body_classes }}\">\n\n  {# Header global partial #}\n  {% global_partial path=\"partials/header.html\" %}\n\n  <main>\n    {# Drag and drop area #}\n    {% dnd_area \"main_content\" label=\"Main content\" %}\n      {% dnd_section %}\n        {% dnd_row %}\n          {% dnd_column width=12 %}\n            {% dnd_module path=\"@hubspot/rich_text\" %}\n          {% end_dnd_column %}\n        {% end_dnd_row %}\n      {% end_dnd_section %}\n    {% end_dnd_area %}\n  </main>\n\n  {# Footer global partial #}\n  {% global_partial path=\"partials/footer.html\" %}\n\n  {{ standard_footer_includes }}\n</body>\n</html>"
+    },
+    "blog_listing_structure": {
+        "description": "Blog listing template key pattern",
+        "example": "{% for post in contents %}\n<article>\n  {% if post.featured_image %}\n  <img src=\"{{ post.featured_image }}\" alt=\"{{ post.featured_image_alt_text }}\">\n  {% endif %}\n  <h2><a href=\"{{ post.absolute_url }}\">{{ post.name }}</a></h2>\n  <time>{{ post.publish_date|format_datetime('long') }}</time>\n  <div>{{ post.post_list_content }}</div>\n</article>\n{% endfor %}\n\n{# Pagination #}\n{% if current_page_num > 1 %}\n<a href=\"{{ blog_page_link(current_page_num - 1) }}\">Previous</a>\n{% endif %}\n{% if current_page_num < last_page_num %}\n<a href=\"{{ blog_page_link(current_page_num + 1) }}\">Next</a>\n{% endif %}"
+    },
+    "auto_included": {
+        "jquery": "Optional. Configurable versions: 1.11.x, 1.7.1, or disabled via settings.",
+        "layout_css": "Auto-included in drag-and-drop templates; optional in coded templates that use dnd_area.",
+        "tracking_code": "Auto-included via standard_footer_includes. Excluded from email templates."
+    }
+}
