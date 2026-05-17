@@ -31,20 +31,53 @@
     "context_object": {
         "description": "The context parameter contains request information",
         "properties": [
-            { "property": "context.queryParameters", "description": "URL query string parameters as object" },
-            { "property": "context.body", "description": "Request body (already parsed from JSON)" },
-            { "property": "context.headers", "description": "HTTP request headers" },
-            { "property": "context.params", "description": "URL path parameters" },
-            { "property": "context.accountId", "description": "HubSpot account ID" },
-            { "property": "context.contact", "description": "Contact data if visitor is identified" },
-            { "property": "context.secrets", "description": "Access to configured secrets" }
+            {
+                "property": "context.queryParameters",
+                "description": "URL query string parameters as object"
+            },
+            {
+                "property": "context.body",
+                "description": "Request body (already parsed from JSON)"
+            },
+            {
+                "property": "context.headers",
+                "description": "HTTP request headers"
+            },
+            {
+                "property": "context.params",
+                "description": "URL path parameters"
+            },
+            {
+                "property": "context.accountId",
+                "description": "HubSpot account ID"
+            },
+            {
+                "property": "context.contact",
+                "description": "Contact data if visitor is identified"
+            },
+            {
+                "property": "context.secrets",
+                "description": "Access to configured secrets"
+            }
         ]
     },
     "response_object": {
         "properties": [
-            { "property": "statusCode", "type": "Number", "description": "HTTP status code (200, 400, 404, 500, etc.)" },
-            { "property": "body", "type": "Object or String", "description": "Response payload" },
-            { "property": "headers", "type": "Object", "description": "Response headers" }
+            {
+                "property": "statusCode",
+                "type": "Number",
+                "description": "HTTP status code (200, 400, 404, 500, etc.)"
+            },
+            {
+                "property": "body",
+                "type": "Object or String",
+                "description": "Response payload"
+            },
+            {
+                "property": "headers",
+                "type": "Object",
+                "description": "Response headers"
+            }
         ]
     },
     "secrets_usage": {
@@ -80,5 +113,17 @@
             "add": "hs secrets add SECRET_NAME",
             "access": "process.env.SECRET_NAME"
         }
-    ]
+    ],
+    "scraped": {
+        "scraped_limits": [
+            "10 second",
+            "100 endpoint",
+            "50 secret"
+        ],
+        "scraped_examples": [
+            "exports.main = async context => {\n  console.log(\"Log some debug info\");\n  console.error(\"An error occurred\");\n  return {\n    statusCode: 200,\n    body: { message: \"Hello World\" },\n  };\n};",
+            "exports.main = async context => {\n  console.log(\"Log some debug info\");\n  console.error(\"An error occurred\");\n  return {\n    statusCode: 200,\n    body: { message: \"Hello World\" },\n  };\n};"
+        ]
+    },
+    "last_scraped": "2026-05-17T05:50:25.060Z"
 }

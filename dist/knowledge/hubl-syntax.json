@@ -6,9 +6,21 @@
         "delimiters": {
             "description": "HubL uses Jinja2/Nunjucks-style delimiters",
             "types": [
-                { "delimiter": "{{ }}", "purpose": "Output a variable or expression", "example": "{{ content.name }}" },
-                { "delimiter": "{% %}", "purpose": "Execute a statement (tag, if, for, set, etc.)", "example": "{% if contact %}Hello, {{ contact.firstname }}{% endif %}" },
-                { "delimiter": "{# #}", "purpose": "Comment (not rendered)", "example": "{# This is a comment #}" }
+                {
+                    "delimiter": "{{ }}",
+                    "purpose": "Output a variable or expression",
+                    "example": "{{ content.name }}"
+                },
+                {
+                    "delimiter": "{% %}",
+                    "purpose": "Execute a statement (tag, if, for, set, etc.)",
+                    "example": "{% if contact %}Hello, {{ contact.firstname }}{% endif %}"
+                },
+                {
+                    "delimiter": "{# #}",
+                    "purpose": "Comment (not rendered)",
+                    "example": "{# This is a comment #}"
+                }
             ]
         },
         "statements": {
@@ -84,58 +96,230 @@
         },
         "operators": {
             "math": [
-                { "operator": "+", "description": "Addition", "example": "{{ 11 + 2 }}" },
-                { "operator": "-", "description": "Subtraction", "example": "{{ 11 - 2 }}" },
-                { "operator": "/", "description": "Division", "example": "{{ 11 / 2 }}" },
-                { "operator": "%", "description": "Modulo (remainder)", "example": "{{ 11 % 2 }}" },
-                { "operator": "//", "description": "Integer division (floor)", "example": "{{ 11 // 2 }}" },
-                { "operator": "*", "description": "Multiplication", "example": "{{ 11 * 2 }}" },
-                { "operator": "**", "description": "Exponentiation", "example": "{{ 11 ** 2 }}" }
+                {
+                    "operator": "+",
+                    "description": "Addition",
+                    "example": "{{ 11 + 2 }}"
+                },
+                {
+                    "operator": "-",
+                    "description": "Subtraction",
+                    "example": "{{ 11 - 2 }}"
+                },
+                {
+                    "operator": "/",
+                    "description": "Division",
+                    "example": "{{ 11 / 2 }}"
+                },
+                {
+                    "operator": "%",
+                    "description": "Modulo (remainder)",
+                    "example": "{{ 11 % 2 }}"
+                },
+                {
+                    "operator": "//",
+                    "description": "Integer division (floor)",
+                    "example": "{{ 11 // 2 }}"
+                },
+                {
+                    "operator": "*",
+                    "description": "Multiplication",
+                    "example": "{{ 11 * 2 }}"
+                },
+                {
+                    "operator": "**",
+                    "description": "Exponentiation",
+                    "example": "{{ 11 ** 2 }}"
+                }
             ],
             "comparison": [
-                { "operator": "==", "shorthand": "eq", "description": "Equal to" },
-                { "operator": "!=", "shorthand": "ne", "description": "Not equal to" },
-                { "operator": ">", "shorthand": "gt", "description": "Greater than" },
-                { "operator": ">=", "shorthand": "gte", "description": "Greater than or equal" },
-                { "operator": "<", "shorthand": "lt", "description": "Less than" },
-                { "operator": "<=", "shorthand": "lte", "description": "Less than or equal" }
+                {
+                    "operator": "==",
+                    "shorthand": "eq",
+                    "description": "Equal to"
+                },
+                {
+                    "operator": "!=",
+                    "shorthand": "ne",
+                    "description": "Not equal to"
+                },
+                {
+                    "operator": ">",
+                    "shorthand": "gt",
+                    "description": "Greater than"
+                },
+                {
+                    "operator": ">=",
+                    "shorthand": "gte",
+                    "description": "Greater than or equal"
+                },
+                {
+                    "operator": "<",
+                    "shorthand": "lt",
+                    "description": "Less than"
+                },
+                {
+                    "operator": "<=",
+                    "shorthand": "lte",
+                    "description": "Less than or equal"
+                }
             ],
             "logical": [
-                { "operator": "and", "description": "Returns true if both operands are truthy" },
-                { "operator": "or", "description": "Returns first truthy operand or the second" },
-                { "operator": "not", "description": "Negates a boolean" },
-                { "operator": "is / is not", "description": "Affirms or negates an expression test" },
-                { "operator": "in", "description": "Checks if value exists in a sequence" },
-                { "operator": "|", "description": "Applies a filter to a value" },
-                { "operator": "~", "description": "Concatenates values as strings" },
-                { "operator": "?", "description": "Ternary: expression ? true_value : false_value" }
+                {
+                    "operator": "and",
+                    "description": "Returns true if both operands are truthy"
+                },
+                {
+                    "operator": "or",
+                    "description": "Returns first truthy operand or the second"
+                },
+                {
+                    "operator": "not",
+                    "description": "Negates a boolean"
+                },
+                {
+                    "operator": "is / is not",
+                    "description": "Affirms or negates an expression test"
+                },
+                {
+                    "operator": "in",
+                    "description": "Checks if value exists in a sequence"
+                },
+                {
+                    "operator": "|",
+                    "description": "Applies a filter to a value"
+                },
+                {
+                    "operator": "~",
+                    "description": "Concatenates values as strings"
+                },
+                {
+                    "operator": "?",
+                    "description": "Ternary: expression ? true_value : false_value"
+                }
             ]
         },
         "expression_tests": [
-            { "test": "boolean", "description": "Verify strict boolean type", "example": "{% if isActive is boolean %}" },
-            { "test": "containing", "description": "Check if list contains a value", "example": "{% if numbers is containing 2 %}" },
-            { "test": "containingall", "description": "Check if list contains all values from another list", "example": "{% if numbers is containingall [2, 3] %}" },
-            { "test": "defined", "description": "Verify variable exists in context", "example": "{% if widget_data.color is defined %}" },
-            { "test": "divisibleby", "description": "Test numeric divisibility", "example": "{% if loop.index is divisibleby 5 %}" },
-            { "test": "equalto", "description": "Compare variable to a value", "example": "{% if loop.length is equalto 4 %}" },
-            { "test": "even", "description": "Verify numeric value is even", "example": "{% if loop.index is even %}" },
-            { "test": "float", "description": "Verify value is a float", "example": "{% if quantity is float %}" },
-            { "test": "integer", "description": "Verify value is a whole number", "example": "{% if quantity is integer %}" },
-            { "test": "iterable", "description": "Test if variable can be looped through", "example": "{% if jobs is iterable %}" },
-            { "test": "lower", "description": "Verify string is lowercase", "example": "{% if text is lower %}" },
-            { "test": "mapping", "description": "Verify object is a dictionary/map", "example": "{% if contact is mapping %}" },
-            { "test": "none", "description": "Verify variable has null value", "example": "{% if email is none %}" },
-            { "test": "number", "description": "Verify value is numeric", "example": "{% if my_var is number %}" },
-            { "test": "odd", "description": "Verify numeric value is odd", "example": "{% if loop.index is odd %}" },
-            { "test": "sameas", "description": "Compare two variables for identical values", "example": "{% if var_one is sameas var_two %}" },
-            { "test": "sequence", "description": "Test if variable is a sequence (list/array)", "example": "{% if genres is sequence %}" },
-            { "test": "string", "description": "Verify value is a string", "example": "{% if my_var is string %}" },
-            { "test": "string_containing", "description": "Test if string contains substring", "example": "{% if domain is string_containing \".es\" %}" },
-            { "test": "string_startingwith", "description": "Test if string starts with prefix", "example": "{% if slug is string_startingwith \"es/\" %}" },
-            { "test": "truthy", "description": "Test if expression evaluates to True", "example": "{% if checkbox is truthy %}" },
-            { "test": "undefined", "description": "Verify variable doesn't exist in context", "example": "{% if my_var is undefined %}" },
-            { "test": "upper", "description": "Verify string is uppercase", "example": "{% if text is upper %}" },
-            { "test": "within", "description": "Test if variable is present within a list", "example": "{% if 2 is within numbers %}" }
+            {
+                "test": "boolean",
+                "description": "Verify strict boolean type",
+                "example": "{% if isActive is boolean %}"
+            },
+            {
+                "test": "containing",
+                "description": "Check if list contains a value",
+                "example": "{% if numbers is containing 2 %}"
+            },
+            {
+                "test": "containingall",
+                "description": "Check if list contains all values from another list",
+                "example": "{% if numbers is containingall [2, 3] %}"
+            },
+            {
+                "test": "defined",
+                "description": "Verify variable exists in context",
+                "example": "{% if widget_data.color is defined %}"
+            },
+            {
+                "test": "divisibleby",
+                "description": "Test numeric divisibility",
+                "example": "{% if loop.index is divisibleby 5 %}"
+            },
+            {
+                "test": "equalto",
+                "description": "Compare variable to a value",
+                "example": "{% if loop.length is equalto 4 %}"
+            },
+            {
+                "test": "even",
+                "description": "Verify numeric value is even",
+                "example": "{% if loop.index is even %}"
+            },
+            {
+                "test": "float",
+                "description": "Verify value is a float",
+                "example": "{% if quantity is float %}"
+            },
+            {
+                "test": "integer",
+                "description": "Verify value is a whole number",
+                "example": "{% if quantity is integer %}"
+            },
+            {
+                "test": "iterable",
+                "description": "Test if variable can be looped through",
+                "example": "{% if jobs is iterable %}"
+            },
+            {
+                "test": "lower",
+                "description": "Verify string is lowercase",
+                "example": "{% if text is lower %}"
+            },
+            {
+                "test": "mapping",
+                "description": "Verify object is a dictionary/map",
+                "example": "{% if contact is mapping %}"
+            },
+            {
+                "test": "none",
+                "description": "Verify variable has null value",
+                "example": "{% if email is none %}"
+            },
+            {
+                "test": "number",
+                "description": "Verify value is numeric",
+                "example": "{% if my_var is number %}"
+            },
+            {
+                "test": "odd",
+                "description": "Verify numeric value is odd",
+                "example": "{% if loop.index is odd %}"
+            },
+            {
+                "test": "sameas",
+                "description": "Compare two variables for identical values",
+                "example": "{% if var_one is sameas var_two %}"
+            },
+            {
+                "test": "sequence",
+                "description": "Test if variable is a sequence (list/array)",
+                "example": "{% if genres is sequence %}"
+            },
+            {
+                "test": "string",
+                "description": "Verify value is a string",
+                "example": "{% if my_var is string %}"
+            },
+            {
+                "test": "string_containing",
+                "description": "Test if string contains substring",
+                "example": "{% if domain is string_containing \".es\" %}"
+            },
+            {
+                "test": "string_startingwith",
+                "description": "Test if string starts with prefix",
+                "example": "{% if slug is string_startingwith \"es/\" %}"
+            },
+            {
+                "test": "truthy",
+                "description": "Test if expression evaluates to True",
+                "example": "{% if checkbox is truthy %}"
+            },
+            {
+                "test": "undefined",
+                "description": "Verify variable doesn't exist in context",
+                "example": "{% if my_var is undefined %}"
+            },
+            {
+                "test": "upper",
+                "description": "Verify string is uppercase",
+                "example": "{% if text is upper %}"
+            },
+            {
+                "test": "within",
+                "description": "Test if variable is present within a list",
+                "example": "{% if 2 is within numbers %}"
+            }
         ],
         "common_patterns": [
             {
@@ -171,5 +355,9 @@
                 "code": "{{ content.publish_date|format_datetime('long', 'America/New_York', 'en') }}"
             }
         ]
+    },
+    "operators_and_tests": {
+        "scraped_operators": [],
+        "scraped_tests": []
     }
 }

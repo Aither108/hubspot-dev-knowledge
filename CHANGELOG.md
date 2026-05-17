@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-05-17 — Automated Knowledge Update
+
+- **HubL Syntax** updated (+237 / -49 lines)
+- **HubL Tags** updated (+293 / -3 lines)
+- **Serverless Functions** updated (+57 / -12 lines)
+
 ## 2026-05-11 — Initial Release
 
 - **HubL Variables** — all sections: global, blog, email, HTTP request, HubDB, CRM, menu, editor

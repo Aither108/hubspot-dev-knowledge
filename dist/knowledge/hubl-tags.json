@@ -287,7 +287,12 @@
             "syntax": "{% dnd_area \"area_id\" %}...{% end_dnd_area %}",
             "category": "drag-and-drop",
             "description": "Defines a drag-and-drop area in coded templates. Includes layout.css automatically.",
-            "children": ["dnd_section", "dnd_row", "dnd_column", "dnd_module"]
+            "children": [
+                "dnd_section",
+                "dnd_row",
+                "dnd_column",
+                "dnd_module"
+            ]
         },
         {
             "name": "dnd_section",
@@ -358,6 +363,291 @@
             "syntax": "{{ standard_footer_includes }}",
             "category": "required",
             "description": "Must be placed before </body>. Adds HubSpot tracking code and footer scripts. Required in all page templates."
+        },
+        {
+            "name": "if",
+            "syntax": "{% if module.label %}",
+            "scraped_new": true
+        },
+        {
+            "name": "linked_image",
+            "syntax": "{% linked_image \"linked_image\" %} {% linked_image \"executive_image\"",
+            "scraped_new": true
+        },
+        {
+            "name": "logo",
+            "syntax": "{% logo \"logo\" %} {% logo \"my_logo\" width=\"200\" %}",
+            "scraped_new": true
+        },
+        {
+            "name": "menu",
+            "syntax": "{% menu \"my_menu\"",
+            "scraped_new": true
+        },
+        {
+            "name": "require_head",
+            "syntax": "{% require_head %}",
+            "scraped_new": true
+        },
+        {
+            "name": "rich_text",
+            "syntax": "{% rich_text \"rich_text\" %} {% rich_text \"left_column\" label=\"Enter HTML here\"",
+            "scraped_new": true
+        },
+        {
+            "name": "rss_listing",
+            "syntax": "{% rss_listing \"rss_listing\" %}",
+            "scraped_new": true
+        },
+        {
+            "name": "section_header",
+            "syntax": "{% section_header \"section_header\" %} {% section_header \"my_section_header\"",
+            "scraped_new": true
+        },
+        {
+            "name": "simple_menu",
+            "syntax": "{% simple_menu \"simple_menu\" %} {% simple_menu \"my_simple_menu\"",
+            "scraped_new": true
+        },
+        {
+            "name": "social_sharing",
+            "syntax": "{% social_sharing \"social_sharing\" %}",
+            "scraped_new": true
+        },
+        {
+            "name": "space",
+            "syntax": "{% space \"space\" %} {% space \"spacer\" label=\"Horizontal Spacer\" %}",
+            "scraped_new": true
+        },
+        {
+            "name": "email_subscriptions_confirmation",
+            "syntax": "{% email_subscriptions_confirmation \"email_subscriptions_confirmation\" %} {%",
+            "scraped_new": true
+        },
+        {
+            "name": "member_login",
+            "syntax": "{% member_login \"my_login\"",
+            "scraped_new": true
+        },
+        {
+            "name": "member_register",
+            "syntax": "{% member_register \"my_register\"",
+            "scraped_new": true
+        },
+        {
+            "name": "password_reset_request",
+            "syntax": "{% password_reset_request \"my_password_reset_request\"",
+            "scraped_new": true
+        },
+        {
+            "name": "password_reset",
+            "syntax": "{% password_reset \"my_password_reset\"",
+            "scraped_new": true
+        },
+        {
+            "name": "password_prompt",
+            "syntax": "{% password_prompt \"my_password_prompt\"",
+            "scraped_new": true
+        },
+        {
+            "name": "text",
+            "syntax": "{% text \"text\" %}",
+            "scraped_new": true
+        },
+        {
+            "name": "textarea",
+            "syntax": "{% textarea \"my_textarea\"",
+            "scraped_new": true
+        },
+        {
+            "name": "video_player",
+            "syntax": "{% video_player \"embed_player\" %}",
+            "scraped_new": true
         }
-    ]
+    ],
+    "scraped": {
+        "scraped_tags": [
+            {
+                "name": "blog_comments",
+                "syntax": "{% blog_comments \"blog_comments\" label=\"Blog comments\" select_blog=\"359485112\""
+            },
+            {
+                "name": "post_filter",
+                "syntax": "{% post_filter \"post_filter\" %}"
+            },
+            {
+                "name": "post_listing",
+                "syntax": "{% post_listing \"post_listing\" %}"
+            },
+            {
+                "name": "related_blog_posts",
+                "syntax": "{% related_blog_posts"
+            },
+            {
+                "name": "blog_social_sharing",
+                "syntax": "{% blog_social_sharing \"blog_social_sharing\""
+            },
+            {
+                "name": "blog_subscribe",
+                "syntax": "{% blog_subscribe \"blog_subscribe\" %} {% blog_subscribe"
+            },
+            {
+                "name": "boolean",
+                "syntax": "{% boolean \"boolean\" %} {% boolean \"nav_toggle\" label=\"Hide navigation\","
+            },
+            {
+                "name": "choice",
+                "syntax": "{% choice \"choice\" %} {% choice \"type_of_page\" label=\"Choose the type of page\","
+            },
+            {
+                "name": "color",
+                "syntax": "{% color \"color\" %} {% color \"my_color_picker\" label=\"Choose a color\","
+            },
+            {
+                "name": "cta",
+                "syntax": "{% cta \"cta\" %} {% cta \"my_cta\" label=\"Select a CTA\","
+            },
+            {
+                "name": "raw_html",
+                "syntax": "{% raw_html \"raw_html\" %} {% raw_html \"my_custom_html_module\" label=\"Enter HTML"
+            },
+            {
+                "name": "module",
+                "syntax": "{% module \"my_custom_module\""
+            },
+            {
+                "name": "if",
+                "syntax": "{% if module.label %}"
+            },
+            {
+                "name": "widget_container",
+                "syntax": "{% widget_container \"my_flexible_column\" label=\"My flex column\"%}"
+            },
+            {
+                "name": "form",
+                "syntax": "{% form \"my_form\" form_to_use=\"{formID}\", title=\"Free Trial\" %}"
+            },
+            {
+                "name": "page_footer",
+                "syntax": "{% page_footer \"page_footer\" %}"
+            },
+            {
+                "name": "gallery",
+                "syntax": "{% gallery \"crm_gallery\" %}"
+            },
+            {
+                "name": "header",
+                "syntax": "{% header \"header\" %} {% header \"my_header\" header_tag=\"h1\", overrideable=True,"
+            },
+            {
+                "name": "icon",
+                "syntax": "{% icon name=\"Accessible Icon\" style=\"REGULAR\" unicode=\"f368\""
+            },
+            {
+                "name": "image",
+                "syntax": "{% image \"image\" %} {% image \"executive_image\" label=\"Executive photo\","
+            },
+            {
+                "name": "image_src",
+                "syntax": "{% image_src \"image_src\" %} {% image_src \"executve_image_src\""
+            },
+            {
+                "name": "language_switcher",
+                "syntax": "{% language_switcher \"language_switcher\" overrideable=false,"
+            },
+            {
+                "name": "linked_image",
+                "syntax": "{% linked_image \"linked_image\" %} {% linked_image \"executive_image\""
+            },
+            {
+                "name": "logo",
+                "syntax": "{% logo \"logo\" %} {% logo \"my_logo\" width=\"200\" %}"
+            },
+            {
+                "name": "menu",
+                "syntax": "{% menu \"my_menu\""
+            },
+            {
+                "name": "require_css",
+                "syntax": "{{ standard_header_includes }}"
+            },
+            {
+                "name": "require_head",
+                "syntax": "{% require_head %}"
+            },
+            {
+                "name": "require_js",
+                "syntax": "{{ standard_header_includes }}"
+            },
+            {
+                "name": "rich_text",
+                "syntax": "{% rich_text \"rich_text\" %} {% rich_text \"left_column\" label=\"Enter HTML here\""
+            },
+            {
+                "name": "rss_listing",
+                "syntax": "{% rss_listing \"rss_listing\" %}"
+            },
+            {
+                "name": "section_header",
+                "syntax": "{% section_header \"section_header\" %} {% section_header \"my_section_header\""
+            },
+            {
+                "name": "simple_menu",
+                "syntax": "{% simple_menu \"simple_menu\" %} {% simple_menu \"my_simple_menu\""
+            },
+            {
+                "name": "social_sharing",
+                "syntax": "{% social_sharing \"social_sharing\" %}"
+            },
+            {
+                "name": "space",
+                "syntax": "{% space \"space\" %} {% space \"spacer\" label=\"Horizontal Spacer\" %}"
+            },
+            {
+                "name": "email_simple_subscription",
+                "syntax": "{% email_simple_subscription \"email_simple_subscription\" %}"
+            },
+            {
+                "name": "email_subscriptions",
+                "syntax": "{% email_subscriptions \"email_subscriptions\" %} {% email_subscriptions"
+            },
+            {
+                "name": "email_subscriptions_confirmation",
+                "syntax": "{% email_subscriptions_confirmation \"email_subscriptions_confirmation\" %} {%"
+            },
+            {
+                "name": "member_login",
+                "syntax": "{% member_login \"my_login\""
+            },
+            {
+                "name": "member_register",
+                "syntax": "{% member_register \"my_register\""
+            },
+            {
+                "name": "password_reset_request",
+                "syntax": "{% password_reset_request \"my_password_reset_request\""
+            },
+            {
+                "name": "password_reset",
+                "syntax": "{% password_reset \"my_password_reset\""
+            },
+            {
+                "name": "password_prompt",
+                "syntax": "{% password_prompt \"my_password_prompt\""
+            },
+            {
+                "name": "text",
+                "syntax": "{% text \"text\" %}"
+            },
+            {
+                "name": "textarea",
+                "syntax": "{% textarea \"my_textarea\""
+            },
+            {
+                "name": "video_player",
+                "syntax": "{% video_player \"embed_player\" %}"
+            }
+        ]
+    },
+    "last_scraped": "2026-05-17T05:48:37.904Z"
 }
