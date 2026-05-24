@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-05-24 — Automated Knowledge Update
+
+- **HubDB** updated (+82 / -15 lines)
+- **HubL Tags** updated (+1 / -1 lines)
+- **HubL Variables** updated (+1733 / -157 lines)
+- **Serverless Functions** updated (+1 / -1 lines)
+
 ## 2026-05-17 — Automated Knowledge Update
 
 - **HubL Syntax** updated (+237 / -49 lines)

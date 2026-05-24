@@ -8,7 +8,12 @@
     "tables": "2D arrangements of rows and columns with unique IDs",
     "rows": "Horizontal data slices with auto-assigned IDs and default columns",
     "columns": "Vertical slices with assigned types and unique IDs",
-    "default_columns": ["hs_id", "hs_created_at", "hs_path", "hs_name"]
+    "default_columns": [
+      "hs_id",
+      "hs_created_at",
+      "hs_path",
+      "hs_name"
+    ]
   },
   "limits": {
     "account": {
@@ -53,18 +58,66 @@
       "example": "{% set table = hubdb_table('products') %}\nTotal rows: {{ table.row_count }}"
     },
     "filter_operators": [
-      { "operator": "__eq", "description": "Equals", "example": "status__eq=active" },
-      { "operator": "__ne", "description": "Not equals", "example": "category__ne=deprecated" },
-      { "operator": "__gt", "description": "Greater than", "example": "price__gt=100" },
-      { "operator": "__gte", "description": "Greater than or equal", "example": "rating__gte=4" },
-      { "operator": "__lt", "description": "Less than", "example": "stock__lt=10" },
-      { "operator": "__lte", "description": "Less than or equal", "example": "age__lte=30" },
-      { "operator": "__contains", "description": "Contains substring", "example": "name__contains=premium" },
-      { "operator": "__is", "description": "Is (for booleans)", "example": "featured__is=true" },
-      { "operator": "__in", "description": "In list of values", "example": "category__in=shoes,boots" },
-      { "operator": "orderby", "description": "Sort by column", "example": "orderby=price or orderby=-price (descending)" },
-      { "operator": "limit", "description": "Max rows to return (default 1000)", "example": "limit=50" },
-      { "operator": "offset", "description": "Row offset for pagination", "example": "offset=20" }
+      {
+        "operator": "__eq",
+        "description": "Equals",
+        "example": "status__eq=active"
+      },
+      {
+        "operator": "__ne",
+        "description": "Not equals",
+        "example": "category__ne=deprecated"
+      },
+      {
+        "operator": "__gt",
+        "description": "Greater than",
+        "example": "price__gt=100"
+      },
+      {
+        "operator": "__gte",
+        "description": "Greater than or equal",
+        "example": "rating__gte=4"
+      },
+      {
+        "operator": "__lt",
+        "description": "Less than",
+        "example": "stock__lt=10"
+      },
+      {
+        "operator": "__lte",
+        "description": "Less than or equal",
+        "example": "age__lte=30"
+      },
+      {
+        "operator": "__contains",
+        "description": "Contains substring",
+        "example": "name__contains=premium"
+      },
+      {
+        "operator": "__is",
+        "description": "Is (for booleans)",
+        "example": "featured__is=true"
+      },
+      {
+        "operator": "__in",
+        "description": "In list of values",
+        "example": "category__in=shoes,boots"
+      },
+      {
+        "operator": "orderby",
+        "description": "Sort by column",
+        "example": "orderby=price or orderby=-price (descending)"
+      },
+      {
+        "operator": "limit",
+        "description": "Max rows to return (default 1000)",
+        "example": "limit=50"
+      },
+      {
+        "operator": "offset",
+        "description": "Row offset for pagination",
+        "example": "offset=20"
+      }
     ]
   },
   "dynamic_pages": {
@@ -82,5 +135,19 @@
     "fetch": "hs hubdb fetch <table_id> <local-file.json>",
     "clear": "hs hubdb clear <table_id>",
     "delete": "hs hubdb delete <table_id>"
-  }
+  },
+  "scraped": {
+    "scraped_column_types": [
+      "hs_id",
+      "hs_created_at",
+      "hs_path",
+      "hs_name"
+    ],
+    "scraped_limits": [
+      "10,000 rows per",
+      "65,000 characters",
+      "10,000 characters"
+    ]
+  },
+  "last_scraped": "2026-05-24T06:00:55.738Z"
 }
