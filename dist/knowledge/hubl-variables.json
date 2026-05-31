@@ -834,8 +834,8 @@
     ],
     "scraped": {
         "scraped_sections": {
-            "on_this_page": {
-                "label": "On this page",
+            "start_building": {
+                "label": "Start Building",
                 "variables": [
                     {
                         "name": "account",
@@ -1004,8 +1004,8 @@
                     }
                 ]
             },
-            "documentation_index": {
-                "label": "Documentation Index",
+            "reference": {
+                "label": "Reference",
                 "variables": [
                     {
                         "name": "site_settings.company_city",
@@ -1034,8 +1034,8 @@
                     }
                 ]
             },
-            "​_variables_available_in_all_templates": {
-                "label": "​\nVariables available in all templates",
+            "best_practices": {
+                "label": "Best Practices",
                 "variables": [
                     {
                         "name": "background_color",
@@ -1104,8 +1104,8 @@
                     }
                 ]
             },
-            "​_email_variables": {
-                "label": "​\nEmail variables",
+            "marketplace": {
+                "label": "Marketplace",
                 "variables": [
                     {
                         "name": "content.create_page",
@@ -1199,8 +1199,8 @@
                     }
                 ]
             },
-            "​_required_email_template_variables": {
-                "label": "​\nRequired email template variables",
+            "versions_&_deprecations": {
+                "label": "Versions & Deprecations",
                 "variables": [
                     {
                         "name": "membership_company_name",
@@ -1254,8 +1254,8 @@
                     }
                 ]
             },
-            "​_color_and_font_settings": {
-                "label": "​\nColor and font settings",
+            "on_this_page": {
+                "label": "On this page",
                 "variables": [
                     {
                         "name": "standard_footer_includes",
@@ -1269,8 +1269,8 @@
                     }
                 ]
             },
-            "​_email_content": {
-                "label": "​\nEmail content",
+            "documentation_index": {
+                "label": "Documentation Index",
                 "variables": [
                     {
                         "name": "builtin_body_classes",
@@ -1294,8 +1294,8 @@
                     }
                 ]
             },
-            "​_private_content_email_variables": {
-                "label": "​\nPrivate content email variables",
+            "​_variables_available_in_all_templates": {
+                "label": "​\nVariables available in all templates",
                 "variables": [
                     {
                         "name": "request.cookies",
@@ -1364,8 +1364,8 @@
                     }
                 ]
             },
-            "​_website_page_variables": {
-                "label": "​\nWebsite page variables",
+            "​_email_variables": {
+                "label": "​\nEmail variables",
                 "variables": [
                     {
                         "name": "blog_author",
@@ -1375,7 +1375,12 @@
                     {
                         "name": "content.blog_post_author",
                         "type": "String",
-                        "description": "This variable contains individual blog post author information for a given post. It contains the following properties:\ncontent.blog_post_author.avatar\ncontent.blog_post_author.bio\ncontent.blog_post_author.display_name\ncontent.blog_post_author.email\ncontent.blog_post_author.facebook\ncontent.blog_post_author.google_plus\ncontent.blog_post_author.has_social_profiles\ncontent.blog_post_author.linkedin\ncontent.blog_post_author.slug\ncontent.blog_post_author.twitter\ncontent.blog_post_author.website"
+                        "description": "This variable contains individual blog post author information for a given post. Returns only the first author when multiple are assigned (use content.blog_author_list instead for multi-author support). It contains the following properties:\ncontent.blog_post_author.avatar\ncontent.blog_post_author.bio\ncontent.blog_post_author.display_name\ncontent.blog_post_author.email\ncontent.blog_post_author.facebook\ncontent.blog_post_author.google_plus\ncontent.blog_post_author.has_social_profiles\ncontent.blog_post_author.linkedin\ncontent.blog_post_author.slug\ncontent.blog_post_author.twitter\ncontent.blog_post_author.website"
+                    },
+                    {
+                        "name": "content.blog_author_list",
+                        "type": "List",
+                        "description": "A list of blog author objects assigned to a given post. Returns all authors, including a single author when only one is set. Use instead of content.blog_post_author when building templates that support multiple authors. Each object in the list contains the following properties:\navatar\nbio\ndisplay_name\nemail\nfacebook\ngravatar_url\nhas_social_profiles\nlinkedin\nname\nslug\ntwitter\ntwitter_username\nwebsite"
                     },
                     {
                         "name": "blog",
@@ -1579,8 +1584,8 @@
                     }
                 ]
             },
-            "​_required_page_template_variables": {
-                "label": "​\nRequired page template variables",
+            "​_required_email_template_variables": {
+                "label": "​\nRequired email template variables",
                 "variables": [
                     {
                         "name": "dynamic_page_crm_object",
@@ -1594,8 +1599,8 @@
                     }
                 ]
             },
-            "​_content_and_contact_variables": {
-                "label": "​\nContent and contact variables",
+            "​_color_and_font_settings": {
+                "label": "​\nColor and font settings",
                 "variables": [
                     {
                         "name": "dynamic_page_hubdb_table_id",
@@ -1639,8 +1644,8 @@
                     }
                 ]
             },
-            "​_http_request_variables": {
-                "label": "​\nHTTP request variables",
+            "​_email_content": {
+                "label": "​\nEmail content",
                 "variables": [
                     {
                         "name": "node.label",
@@ -1704,8 +1709,8 @@
                     }
                 ]
             },
-            "​_blog_variables": {
-                "label": "​\nBlog variables",
+            "​_private_content_email_variables": {
+                "label": "​\nPrivate content email variables",
                 "variables": [
                     {
                         "name": "is_in_hs_app",
@@ -1782,5 +1787,5 @@
         },
         "raw_table_count": 13
     },
-    "last_scraped": "2026-05-24T06:00:20.827Z"
+    "last_scraped": "2026-05-31T06:16:51.842Z"
 }

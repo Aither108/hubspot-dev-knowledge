@@ -11,7 +11,9 @@
     {
       "name": "append",
       "syntax": "list.append(item)",
-      "params": ["item: Any"],
+      "params": [
+        "item: Any"
+      ],
       "returns": "Modified list",
       "description": "Appends an item to a list",
       "example": "{% do numbers.append(4) %}"
@@ -19,7 +21,9 @@
     {
       "name": "blog_all_posts_url",
       "syntax": "blog_all_posts_url(selected_blog)",
-      "params": ["selected_blog: Blog ID or \"default\""],
+      "params": [
+        "selected_blog: Blog ID or \"default\""
+      ],
       "returns": "String (URL)",
       "description": "Returns URL to all posts blog listing page",
       "example": "{{ blog_all_posts_url(\"default\") }}"
@@ -27,7 +31,10 @@
     {
       "name": "blog_author_url",
       "syntax": "blog_author_url(selected_blog, author_slug)",
-      "params": ["selected_blog: Blog ID or \"default\"", "author_slug: String"],
+      "params": [
+        "selected_blog: Blog ID or \"default\"",
+        "author_slug: String"
+      ],
       "returns": "String (URL)",
       "description": "Returns URL to an author's listing page",
       "example": "{{ blog_author_url(\"default\", \"brian-halligan\") }}"
@@ -35,7 +42,10 @@
     {
       "name": "blog_authors",
       "syntax": "blog_authors(selected_blog, limit)",
-      "params": ["selected_blog: Blog ID or \"default\"", "limit: Integer (max 250)"],
+      "params": [
+        "selected_blog: Blog ID or \"default\"",
+        "limit: Integer (max 250)"
+      ],
       "returns": "Sequence of author objects",
       "limit": "250 authors max, 10 calls per page/email",
       "description": "Returns all blog authors",
@@ -44,7 +54,9 @@
     {
       "name": "blog_by_id",
       "syntax": "blog_by_id(selected_blog)",
-      "params": ["selected_blog: Blog ID or \"default\""],
+      "params": [
+        "selected_blog: Blog ID or \"default\""
+      ],
       "returns": "Blog object",
       "limit": "10 calls per page/email",
       "description": "Returns blog object with absolute_url, html_title, and other properties",
@@ -53,7 +65,9 @@
     {
       "name": "blog_page_link",
       "syntax": "blog_page_link(page)",
-      "params": ["page: Number or HubL variable"],
+      "params": [
+        "page: Number or HubL variable"
+      ],
       "returns": "String (URL)",
       "description": "Returns paginated URL for blog listing",
       "example": "{{ blog_page_link(7) }}"
@@ -76,7 +90,12 @@
     {
       "name": "blog_post_archive_url",
       "syntax": "blog_post_archive_url(selected_blog, year, month, day)",
-      "params": ["selected_blog (required)", "year (required)", "month (optional)", "day (optional)"],
+      "params": [
+        "selected_blog (required)",
+        "year (required)",
+        "month (optional)",
+        "day (optional)"
+      ],
       "returns": "String (URL)",
       "description": "Returns archive page URL for specified date",
       "example": "{{ blog_post_archive_url(\"default\", 2017, 7, 5) }}"
@@ -84,7 +103,11 @@
     {
       "name": "blog_recent_author_posts",
       "syntax": "blog_recent_author_posts(selected_blog, author_slug, limit)",
-      "params": ["selected_blog", "author_slug: String", "limit: Integer"],
+      "params": [
+        "selected_blog",
+        "author_slug: String",
+        "limit: Integer"
+      ],
       "returns": "Sequence of posts",
       "limit": "200 posts, 10 calls per page/email",
       "description": "Returns most recent posts by a specific author",
@@ -93,7 +116,10 @@
     {
       "name": "blog_recent_posts",
       "syntax": "blog_recent_posts(selected_blog, limit)",
-      "params": ["selected_blog: Blog ID or \"default\"", "limit: Integer (max 200)"],
+      "params": [
+        "selected_blog: Blog ID or \"default\"",
+        "limit: Integer (max 200)"
+      ],
       "returns": "Sequence of post objects",
       "limit": "10 calls per page/email",
       "description": "Returns most recent blog posts",
@@ -102,7 +128,12 @@
     {
       "name": "blog_recent_tag_posts",
       "syntax": "blog_recent_tag_posts(selected_blog, tag_slug, limit, logical_operator)",
-      "params": ["selected_blog", "tag_slug: String or Array", "limit: Integer", "logical_operator: AND|OR (optional)"],
+      "params": [
+        "selected_blog",
+        "tag_slug: String or Array",
+        "limit: Integer",
+        "logical_operator: AND|OR (optional)"
+      ],
       "returns": "Sequence of posts",
       "limit": "100 posts, 10 calls per page/email",
       "description": "Returns recent posts matching specified tag(s)",
@@ -111,7 +142,10 @@
     {
       "name": "blog_tag_url",
       "syntax": "blog_tag_url(selected_blog, tag_slug)",
-      "params": ["selected_blog", "tag_slug: String"],
+      "params": [
+        "selected_blog",
+        "tag_slug: String"
+      ],
       "returns": "String (URL)",
       "description": "Returns URL to a tag's listing page",
       "example": "{{ blog_tag_url(\"default\", \"inbound-marketing\") }}"
@@ -119,7 +153,10 @@
     {
       "name": "blog_tags",
       "syntax": "blog_tags(selected_blog, limit)",
-      "params": ["selected_blog", "limit: Integer (max 250)"],
+      "params": [
+        "selected_blog",
+        "limit: Integer (max 250)"
+      ],
       "returns": "Sequence of tag objects (sorted by post count)",
       "limit": "250 tags, 10 calls per page/email",
       "description": "Returns all blog tags",
@@ -128,7 +165,9 @@
     {
       "name": "blog_total_post_count",
       "syntax": "blog_total_post_count(selected_blog)",
-      "params": ["selected_blog (optional, defaults to default blog)"],
+      "params": [
+        "selected_blog (optional, defaults to default blog)"
+      ],
       "returns": "Integer",
       "limit": "10 calls per page/email",
       "description": "Returns total count of published blog posts",
@@ -145,7 +184,11 @@
     {
       "name": "color_contrast",
       "syntax": "color_contrast(color_1, color_2, rating)",
-      "params": ["color_1: Color (hex)", "color_2: Color (hex)", "rating: AA|AAA (optional)"],
+      "params": [
+        "color_1: Color (hex)",
+        "color_2: Color (hex)",
+        "rating: AA|AAA (optional)"
+      ],
       "returns": "Boolean",
       "description": "Tests if two colors meet WCAG contrast ratio",
       "example": "{{ color_contrast('#FFFFFF', '#273749') }}"
@@ -153,7 +196,10 @@
     {
       "name": "color_variant",
       "syntax": "color_variant(base_color, brightness_offset)",
-      "params": ["base_color: HEX String", "brightness_offset: Integer (-255 to 255)"],
+      "params": [
+        "base_color: HEX String",
+        "brightness_offset: Integer (-255 to 255)"
+      ],
       "returns": "HEX String",
       "description": "Returns a lighter or darker variant of a hex color",
       "example": "{{ color_variant(\"#3A539B\", -80) }}"
@@ -161,7 +207,9 @@
     {
       "name": "content_by_id",
       "syntax": "content_by_id(id)",
-      "params": ["id: Numeric content ID"],
+      "params": [
+        "id: Numeric content ID"
+      ],
       "returns": "Content object (page, blog post)",
       "limit": "10 calls per page, 20 per email",
       "description": "Returns a content object by its ID",
@@ -170,7 +218,9 @@
     {
       "name": "content_by_ids",
       "syntax": "content_by_ids(ids)",
-      "params": ["ids: List of IDs (max 100)"],
+      "params": [
+        "ids: List of IDs (max 100)"
+      ],
       "returns": "Dictionary of content objects",
       "limit": "10 calls per page/email",
       "description": "Returns multiple content objects by their IDs",
@@ -195,7 +245,12 @@
     {
       "name": "crm_object",
       "syntax": "crm_object(object_type, query, properties, formatting)",
-      "params": ["object_type: String", "query: String", "properties: String (optional)", "formatting: Boolean (optional)"],
+      "params": [
+        "object_type: String",
+        "query: String",
+        "properties: String (optional)",
+        "formatting: Boolean (optional)"
+      ],
       "returns": "Single CRM record as dictionary",
       "limit": "10 calls per page max",
       "description": "Returns a single CRM record matching the query",
@@ -204,7 +259,12 @@
     {
       "name": "crm_objects",
       "syntax": "crm_objects(object_type, query, properties, formatting)",
-      "params": ["object_type: String (required)", "query: String", "properties: String", "formatting: Boolean"],
+      "params": [
+        "object_type: String (required)",
+        "query: String",
+        "properties: String",
+        "formatting: Boolean"
+      ],
       "returns": "Dict with has_more, offset, total, results array",
       "limit": "10 calls per page/email, max 100 objects",
       "description": "Returns multiple CRM records matching the query",
@@ -213,7 +273,10 @@
     {
       "name": "crm_property_definition",
       "syntax": "crm_property_definition(object_type, property_name)",
-      "params": ["object_type: String", "property_name: String"],
+      "params": [
+        "object_type: String",
+        "property_name: String"
+      ],
       "returns": "Property definition object (label, type, etc.)",
       "description": "Returns the definition of a single CRM property",
       "example": "{% set prop = crm_property_definition(\"contact\", \"firstname\") %}"
@@ -221,7 +284,10 @@
     {
       "name": "crm_property_definitions",
       "syntax": "crm_property_definitions(object_type, property_name)",
-      "params": ["object_type: String", "property_name: String (optional)"],
+      "params": [
+        "object_type: String",
+        "property_name: String (optional)"
+      ],
       "returns": "Map of property definitions",
       "description": "Returns definitions of CRM properties",
       "example": "{% set props = crm_property_definitions(\"contact\", \"firstname,lastname\") %}"
@@ -229,7 +295,10 @@
     {
       "name": "cta",
       "syntax": "cta(guid, align_opt)",
-      "params": ["guid: String", "align_opt: justifyleft|justifycenter|justifyright|justifyfull (optional)"],
+      "params": [
+        "guid: String",
+        "align_opt: justifyleft|justifycenter|justifyright|justifyfull (optional)"
+      ],
       "returns": "Rendered CTA HTML",
       "limit": "10 calls per page/email",
       "description": "Renders a HubSpot CTA button",
@@ -238,7 +307,9 @@
     {
       "name": "file_by_id",
       "syntax": "file_by_id(file_id)",
-      "params": ["file_id: Number"],
+      "params": [
+        "file_id: Number"
+      ],
       "returns": "File metadata object (friendlyUrl, name, url)",
       "limit": "10 calls per page/email",
       "description": "Returns file metadata by ID",
@@ -247,7 +318,9 @@
     {
       "name": "files_by_ids",
       "syntax": "files_by_ids(file_ids)",
-      "params": ["file_ids: Array (max 100)"],
+      "params": [
+        "file_ids: Array (max 100)"
+      ],
       "returns": "Array of file metadata objects",
       "limit": "10 calls per page/email",
       "description": "Returns multiple file metadata objects by ID",
@@ -256,7 +329,9 @@
     {
       "name": "flag_content_for_access_check",
       "syntax": "flag_content_for_access_check(id)",
-      "params": ["id: Content ID"],
+      "params": [
+        "id: Content ID"
+      ],
       "returns": "HTML attribute string",
       "description": "Returns hs-member-content-access attribute for membership gating",
       "example": "<article {{ flag_content_for_access_check(content.id) }} >"
@@ -272,7 +347,10 @@
     {
       "name": "format_address",
       "syntax": "format_address(locale, address_dict)",
-      "params": ["locale: String", "address_dict with keys: address, address2, city, state, country, zip"],
+      "params": [
+        "locale: String",
+        "address_dict with keys: address, address2, city, state, country, zip"
+      ],
       "returns": "Formatted address string",
       "description": "Formats an address for a given locale",
       "example": "{{ format_address('en-us', {address: \"25 First Street\", city: \"Cambridge\"}) }}"
@@ -280,7 +358,12 @@
     {
       "name": "format_datetime",
       "syntax": "format_datetime(date_object, format, timeZone, locale)",
-      "params": ["date_object", "format: short|medium|long|full or Unicode LDML pattern", "timeZone: IANA TZDB", "locale: String"],
+      "params": [
+        "date_object",
+        "format: short|medium|long|full or Unicode LDML pattern",
+        "timeZone: IANA TZDB",
+        "locale: String"
+      ],
       "returns": "Formatted datetime string",
       "description": "Formats a datetime object into a readable string",
       "example": "{{ format_datetime(content.publish_date, \"short\", \"America/New_York\", \"en\") }}"
@@ -288,7 +371,9 @@
     {
       "name": "get_asset_url",
       "syntax": "get_asset_url(path)",
-      "params": ["path: String (design manager file path)"],
+      "params": [
+        "path: String (design manager file path)"
+      ],
       "returns": "Public URL string",
       "description": "Returns the public CDN URL for a design manager asset",
       "example": "{{ get_asset_url(\"/custom/styles/style.css\") }}"
@@ -296,7 +381,9 @@
     {
       "name": "get_public_template_url_by_id",
       "syntax": "get_public_template_url_by_id(template_id)",
-      "params": ["template_id: ID"],
+      "params": [
+        "template_id: ID"
+      ],
       "returns": "Public URL string",
       "description": "Returns the public URL for a template or file by ID",
       "example": "{{ get_public_template_url_by_id(\"2778457004\") }}"
@@ -304,7 +391,9 @@
     {
       "name": "hubdb_table",
       "syntax": "hubdb_table(table_id)",
-      "params": ["table_id: String (ID or name)"],
+      "params": [
+        "table_id: String (ID or name)"
+      ],
       "returns": "Table metadata object (name, columns, created_at, published_at, updated_at, row_count)",
       "limit": "10 calls per page/email. Requires HubDB Professional+.",
       "description": "Returns HubDB table metadata",
@@ -313,7 +402,10 @@
     {
       "name": "hubdb_table_column",
       "syntax": "hubdb_table_column(table_id, column)",
-      "params": ["table_id: String", "column: String (ID or name, case-insensitive)"],
+      "params": [
+        "table_id: String",
+        "column: String (ID or name, case-insensitive)"
+      ],
       "returns": "Column metadata (name, label, type, options, foreignIds)",
       "requires": "HubDB Professional+",
       "description": "Returns metadata for a specific HubDB table column",
@@ -322,7 +414,10 @@
     {
       "name": "hubdb_table_row",
       "syntax": "hubdb_table_row(table_id, row_id)",
-      "params": ["table_id: String", "row_id: Integer"],
+      "params": [
+        "table_id: String",
+        "row_id: Integer"
+      ],
       "returns": "Row object accessible via column name attributes",
       "limit": "10 calls per page/email. Requires HubDB Professional+.",
       "description": "Returns a single HubDB row by ID",
@@ -331,7 +426,10 @@
     {
       "name": "hubdb_table_rows",
       "syntax": "hubdb_table_rows(table_id, query)",
-      "params": ["table_id: String", "query: String (filters, operators, limit, offset, orderBy)"],
+      "params": [
+        "table_id: String",
+        "query: String (filters, operators, limit, offset, orderBy)"
+      ],
       "returns": "Rows matching query",
       "limit": "10 calls per page/email, default 1000 rows. Requires HubDB Professional+.",
       "description": "Returns HubDB rows matching a filter query",
@@ -340,7 +438,9 @@
     {
       "name": "include_default_custom_css",
       "syntax": "include_default_custom_css(True)",
-      "params": ["Boolean (must be True)"],
+      "params": [
+        "Boolean (must be True)"
+      ],
       "returns": "Link tag referencing primary CSS file",
       "description": "Includes the account's primary CSS file",
       "example": "{{ include_default_custom_css(True) }}"
@@ -348,7 +448,11 @@
     {
       "name": "load_translations",
       "syntax": "load_translations(path, language_code, language_code_fallback)",
-      "params": ["path: String (to _locales folder)", "language_code: String", "language_code_fallback: String"],
+      "params": [
+        "path: String (to _locales folder)",
+        "language_code: String",
+        "language_code_fallback: String"
+      ],
       "returns": "Map of translation values",
       "description": "Loads translation strings for multi-language templates",
       "example": "{% set translations = load_translations('../_locales', 'fr', 'en') %}"
@@ -356,7 +460,10 @@
     {
       "name": "locale_name",
       "syntax": "locale_name(language_code, target_language_code)",
-      "params": ["language_code: String", "target_language_code: String (optional)"],
+      "params": [
+        "language_code: String",
+        "target_language_code: String (optional)"
+      ],
       "returns": "Human-readable locale string",
       "description": "Returns human-readable name of a locale",
       "example": "{{ locale_name(\"es\", \"en\") }}"
@@ -377,7 +484,9 @@
     {
       "name": "module_asset_url",
       "syntax": "module_asset_url(name)",
-      "params": ["name: String (asset file name)"],
+      "params": [
+        "name: String (asset file name)"
+      ],
       "returns": "Asset URL string",
       "description": "Returns CDN URL for a file inside the current module folder",
       "example": "{{ module_asset_url(\"smile.jpg\") }}"
@@ -385,7 +494,10 @@
     {
       "name": "namespace",
       "syntax": "namespace(dictionary, kwargs)",
-      "params": ["dictionary: Map (optional)", "kwargs: keyword arguments (optional)"],
+      "params": [
+        "dictionary: Map (optional)",
+        "kwargs: keyword arguments (optional)"
+      ],
       "returns": "Namespace object",
       "description": "Creates a namespace object that can be mutated inside loops",
       "example": "{% set ns = namespace(name: \"item\", price: \"100\") %}"
@@ -393,11 +505,84 @@
     {
       "name": "oembed",
       "syntax": "oembed(request)",
-      "params": ["request: Object with url key"],
+      "params": [
+        "request: Object with url key"
+      ],
       "returns": "OEmbed data dictionary",
       "note": "Works in emails only",
       "description": "Returns OEmbed data for embedding external content",
       "example": "{{ oembed({url: \"https://www.youtube.com/watch?v=KqpFNtbEOh8\"}) }}"
+    },
+    {
+      "name": "StartBuilding",
+      "syntax": "StartBuilding(...)",
+      "scraped_new": true
+    },
+    {
+      "name": "Reference",
+      "syntax": "Reference(...)",
+      "scraped_new": true
+    },
+    {
+      "name": "BestPractices",
+      "syntax": "BestPractices(...)",
+      "scraped_new": true
+    },
+    {
+      "name": "Marketplace",
+      "syntax": "Marketplace(...)",
+      "scraped_new": true
+    },
+    {
+      "name": "VersionsDeprecations",
+      "syntax": "VersionsDeprecations(...)",
+      "scraped_new": true
     }
-  ]
+  ],
+  "scraped": {
+    "scraped_functions": [
+      {
+        "name": "StartBuilding",
+        "syntax": "StartBuilding(...)"
+      },
+      {
+        "name": "Reference",
+        "syntax": "Reference(...)"
+      },
+      {
+        "name": "BestPractices",
+        "syntax": "BestPractices(...)"
+      },
+      {
+        "name": "Marketplace",
+        "syntax": "Marketplace(...)"
+      },
+      {
+        "name": "VersionsDeprecations",
+        "syntax": "VersionsDeprecations(...)"
+      }
+    ],
+    "scraped_limits": [
+      "10 calls per page and per email.",
+      "10 calls per page and per email.",
+      "10 calls per page and per email.",
+      "10 calls per page and per email.",
+      "200 posts and 10 calls per page and per email.",
+      "200 posts and 10 calls per page and per email.",
+      "100 posts and 10 calls per page and per email.",
+      "10 calls per page and per email.",
+      "10 calls per page and 20 calls per email.",
+      "10 calls per page and per email.",
+      "10 calls per page and per email.",
+      "10 calls per page and per email.",
+      "10 calls per page and per email, and can accept up to 100 file IDs.",
+      "10 calls per page and per email.",
+      "10 calls per page and per email.",
+      "10 calls per page and per email.",
+      "10 calls per page and per email.",
+      "10 calls per page and per email.",
+      "10 calls per page and per email."
+    ]
+  },
+  "last_scraped": "2026-05-31T06:17:02.066Z"
 }
