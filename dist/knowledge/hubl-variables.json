@@ -955,7 +955,7 @@
                     {
                         "name": "local_dt",
                         "type": "Datetime",
-                        "description": "A datetime object of the current time in the time zone defined in your Report Settings. Usage of this variable will disable page caching in order to return the current time. Learn more about page prerendering and JavaScript alternatives."
+                        "description": "A datetime object in the account’s time zone. On pages, it reflects the current time, which disables page caching. In email templates, it reflects the time the email was scheduled or sent, not the time the recipient views the email. For scheduled emails, this is the time the send was scheduled, not the future send time."
                     },
                     {
                         "name": "local_time_zone",
@@ -1787,5 +1787,5 @@
         },
         "raw_table_count": 13
     },
-    "last_scraped": "2026-08-02T05:24:55.184Z"
+    "last_scraped": "2026-08-09T03:39:29.910Z"
 }
