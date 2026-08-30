@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-08-30 — Automated Knowledge Update
+
+- **HubDB** updated (+1 / -1 lines)
+- **HubL Tags** updated (+1 / -1 lines)
+- **HubL Variables** updated (+1 / -1 lines)
+- **Serverless Functions** updated (+1 / -1 lines)
+
 ## 2026-08-23 — Automated Knowledge Update
 
 - **HubDB** updated (+1 / -1 lines)
