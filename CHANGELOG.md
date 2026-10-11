@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-11 — Automated Knowledge Update
+
+- **HubDB** updated (+1 / -1 lines)
+- **HubL Functions** updated (+1 / -1 lines)
+- **HubL Tags** updated (+1 / -1 lines)
+
 ## 2026-10-04 — Automated Knowledge Update
 
 - **HubDB** updated (+1 / -1 lines)
